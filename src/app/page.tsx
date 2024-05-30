@@ -1,7 +1,23 @@
+"use client";
 import { Button, Container, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
+import { fetchHomeData } from "./api/home/route";
 
 export default function Home() {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetchHomeData();
+        const data = await response;
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Container>
       <Typography variant="h1" component="h1" gutterBottom>
