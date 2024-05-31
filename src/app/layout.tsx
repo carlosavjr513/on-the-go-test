@@ -1,13 +1,19 @@
-import "./globals.css"; // You can create a globals.css for additional global styles
+"use client"
+import "./styles/globals.css";
 import { ReactNode } from "react";
-import ThemeRegistry from "./ThemeRegistry";
+import { ThemeProvider } from "@emotion/react";
+import theme from './styles/theme'
+import Navbar from "./components/Navbar";
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <html lang="en">
+    <html lang="pt">
       <head />
       <body>
-        <ThemeRegistry>{children}</ThemeRegistry>
+        <ThemeProvider theme={theme}>
+          <Navbar />
+          {children}
+          </ThemeProvider>
       </body>
     </html>
   );

@@ -1,50 +1,40 @@
 "use client";
 import { Button, Container, Typography } from "@mui/material";
 import React, { useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 
 export default function Home() {
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('/api/home/7a581b0e16b559ff9a9957');
-        console.log('HOME:', response.data);
-      } catch (err) {
-        console.error('Error fetching data:', err);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get('/api/home/7a581b0e16b559ff9a9957');
+  //       console.log('HOME:', response.data);
+  //     } catch (err) {
+  //       console.error('Error fetching data:', err);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('/api/notifications');
-        console.log('NOTIFICATIONS:', response.data);
-      } catch (err) {
-        console.error('Error fetching data:', err);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get('/api/notifications');
+  //       console.log('NOTIFICATIONS:', response.data);
+  //     } catch (err) {
+  //       console.error('Error fetching data:', err);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   return (
     <Container>
       <Typography variant="h1" component="h1" gutterBottom>
         Welcome to Material-UI with Next.js
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        This is an example of using Material-UI components in a Next.js
-        application.
-      </Typography>
-      <Button variant="contained" color="primary">
-        Hello World
-      </Button>
-      <Button variant="contained" color="secondary">
-        Bye World
-      </Button>
+      </Typography>      
     </Container>
   );
 }
