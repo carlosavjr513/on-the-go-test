@@ -1,8 +1,8 @@
-"use client"
+"use client";
 import "./styles/globals.css";
 import { ReactNode } from "react";
 import { ThemeProvider } from "@emotion/react";
-import theme from './styles/theme'
+import theme from "./styles/theme";
 import Navbar from "./components/Navbar";
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
@@ -13,7 +13,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         <ThemeProvider theme={theme}>
           <Navbar />
           {children}
-          </ThemeProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

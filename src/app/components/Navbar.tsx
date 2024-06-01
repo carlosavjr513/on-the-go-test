@@ -37,7 +37,7 @@ const Navbar = () => {
             <Box
               component="img"
               src="/img/logoSvg.svg"
-              alt="Logo"
+              alt="LogoOnTheGo"
               sx={{ height: 40, width: 40, borderRadius: 1 }}
             />
           </Link>
@@ -77,7 +77,7 @@ const Navbar = () => {
             <Box
               component="img"
               src="/img/logo.png"
-              alt="Logo"
+              alt="LogoOnTheGo"
               sx={{ height: 34, width: 34 }}
             />
             <Typography variant="body1" sx={{ color: "#FFFFFF" }}>
