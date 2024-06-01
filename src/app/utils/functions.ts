@@ -8,13 +8,9 @@ const formatDate = (dateString: string): string => {
   return `${monthName}, ${date.getFullYear()}`;
 };
 
-const splitRunning = (running: string): [string, string] => {
-  const parts = running.split("/");
-  if (parts.length === 2) {
-    return [parts[0], parts[1]];
-  } else {
-    return ["0", "0"];
-  }
+const splitRunning = (running: string): [number, number] => {
+  const [done, total] = running.split("/").map(Number);
+  return [done, total];
 };
 
 export { formatDate, splitRunning };

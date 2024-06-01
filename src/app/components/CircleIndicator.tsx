@@ -2,13 +2,15 @@ import React from 'react';
 import { Box } from '@mui/material';
 
 interface CircleIndicatorProps {
-  count: number;
+  count: [number, number]; 
 }
 
 const CircleIndicator: React.FC<CircleIndicatorProps> = ({ count }) => {
+  const [filledCount, totalCount] = count; 
+
   return (
     <Box sx={{ display: 'flex', marginTop: '8px' }}>
-      {Array.from({ length: 5 }).map((_, index) => (
+      {Array.from({ length: totalCount }).map((_, index) => (
         <Box
           key={index}
           sx={{
@@ -16,8 +18,8 @@ const CircleIndicator: React.FC<CircleIndicatorProps> = ({ count }) => {
             height: 12,
             borderRadius: '50%',
             border: '1px solid #ffffff',
-            backgroundColor: index < count ? '#ffffff' : 'transparent',
-            marginRight: index < 4 ? 1 : 0,
+            backgroundColor: index < filledCount ? '#ffffff' : 'transparent', 
+            marginRight: index < totalCount - 1 ? 1 : 0,
           }}
         />
       ))}

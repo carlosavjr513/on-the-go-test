@@ -6,10 +6,11 @@ import { formatDate, splitRunning } from "./utils/functions";
 import { Circle, Add } from "@mui/icons-material";
 import CircleIndicator from "./components/CircleIndicator";
 import FillingBar from "./components/FillingBar";
+import MontlyResumeCard from "./components/MontlyResumeCard";
 
 export default function Home() {
   const [date, setDate] = useState<string>("");
-  const [running, setRunning] = useState<[string, string]>(["", ""]);
+  const [running, setRunning] = useState<[number, number]>([0, 0]);
   const [scripting, setScripting] = useState<string>("");
   const [audience, setAudience] = useState<any>("");
 
@@ -22,8 +23,8 @@ export default function Home() {
         const formattedDate = formatDate(response.data.createAt);
         setDate(formattedDate);
 
-        const running = splitRunning(response.data.researches.running);
-        setRunning(running); // setRunning(['2', '/5']);
+        const running = splitRunning(response.data.researches.running); // const running = splitRunning("2/5");
+        setRunning(running);
 
         const scripting = response.data.researches.scripting;
         setScripting(scripting);
@@ -66,8 +67,7 @@ export default function Home() {
       }}
     >
       <Container
-        sx={{
-          backgroundColor: "#f00", // DELETE ME WHEN DONE
+        sx={{ 
           height: 224,
           borderRadius: 1,
           top: "87px",
@@ -84,156 +84,9 @@ export default function Home() {
           </Typography>
         </Container>
         <Container sx={{ display: "flex", justifyContent: "space-evenly" }}>
-          <Container>
-            <Container
-              sx={{
-                color: "#8A9099",
-                backgroundColor: "#242528",
-                padding: "12px",
-                borderRadius: 1,
-                height: "171px",
-                width: "212px", // DELETE ME WHEN DONE
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              <Container
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  margin: "0 20px",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Container>
-                  <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                    <span
-                      style={{
-                        fontWeight: 700,
-                        color: "#ffffff",
-                        fontSize: "30px",
-                      }}
-                    >
-                      {running[0]}
-                    </span>
-                    <span>/</span>
-                    <span style={{ fontSize: "18px" }}>{running[1]}</span>
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontWeight: 700,
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <span>PESQUISAS</span>
-                    <span>EM CAMPO</span>
-                  </Typography>
-                </Container>
-                <CircleIndicator count={parseInt(running[0], 10)} />
-              </Container>
-              <Circle sx={{ color: "#0AD2A5", fontSize: 8, marginRight: 1 }} />
-            </Container>
-          </Container>
-          <Container>
-            <Container
-              sx={{
-                color: "#8A9099",
-                backgroundColor: "#242528",
-                padding: "12px",
-                borderRadius: 1,
-                height: "171px",
-                width: "212px", // DELETE ME WHEN DONE
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              <Container
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  margin: "0 20px",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Container>
-                  <Typography
-                    variant="h6"
-                    sx={{ fontWeight: 700, color: "#ffffff", fontSize: "30px" }}
-                  >
-                    {scripting}
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontWeight: 700,
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <span>PESQUISAS SEM</span>
-                    <span>ROTEIRIZAÇÃO</span>
-                  </Typography>
-                </Container>
-              </Container>
-            </Container>
-          </Container>
-          <Container>
-            <Container
-              sx={{
-                color: "#8A9099",
-                backgroundColor: "#242528",
-                padding: "12px",
-                borderRadius: 1,
-                height: "171px",
-                width: "212px", // DELETE ME WHEN DONE
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              <Container
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  margin: "0 20px",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Container>
-                  <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                    <span
-                      style={{
-                        fontWeight: 700,
-                        color: "#ffffff",
-                        fontSize: "30px",
-                      }}
-                    >
-                      {audience.sended}
-                    </span>
-                    <span>/</span>
-                    <span style={{ fontSize: "18px" }}>{audience.balance}</span>
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontWeight: 700,
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <span>DISPAROS</span>
-                    <span>FEITOS</span>
-                  </Typography>
-                </Container>
-                {/* CREATE BAR */}
-                <FillingBar
-                  numerator={audience.sended}
-                  denominator={audience.balance}
-                />
-              </Container>
-            </Container>
-          </Container>
+          <MontlyResumeCard dataType="running" data={running}/>
+          <MontlyResumeCard dataType="scripting" data={scripting}/>
+          <MontlyResumeCard dataType="audience" data={audience}/>
         </Container>
       </Container>
       <Container
