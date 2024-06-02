@@ -1,16 +1,37 @@
 "use client";
 import { Add } from "@mui/icons-material";
-import { Box, Button, Grid, Typography } from "@mui/material";
+// prettier-ignore
+import { Button, Grid, Typography } from "@mui/material";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import CreditDashboard from "./components/CreditDashboard";
 import MontlyResumeCard from "./components/MontlyResumeCard";
 import { formatDate, splitRunning } from "./utils/functions";
 
 export default function Home() {
-  const [date, setDate] = useState<string>("");
-  const [running, setRunning] = useState<[number, number]>([0, 0]);
-  const [scripting, setScripting] = useState<string>("");
-  const [audience, setAudience] = useState<any>("");
+  // const [date, setDate] = useState<string>("");
+  // const [running, setRunning] = useState<[number, number]>([0, 0]);
+  // const [scripting, setScripting] = useState<string>("");
+  // const [audience, setAudience] = useState<any>("");
+
+  type HomeData = {
+    date: string;
+    running: [number, number];
+    scripting: string;
+    audience: any;
+    credits: { [key: string]: number };
+  };
+
+  const { register, setValue, watch } = useForm<HomeData>({
+    defaultValues: {
+      date: "",
+      running: [0, 0],
+      scripting: "",
+      audience: {},
+      credits: {},
+    },
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,39 +40,32 @@ export default function Home() {
         console.log("HOME:", response.data);
 
         const formattedDate = formatDate(response.data.createAt);
-        setDate(formattedDate);
-
-        const running = splitRunning(response.data.researches.running); // const running = splitRunning("2/5");
-        setRunning(running);
-
+        const running = splitRunning(response.data.researches.running);
         const scripting = response.data.researches.scripting;
-        setScripting(scripting);
-
         const audience = response.data.audience;
-        setAudience(audience);
+        const credits = response.data.credits;
+
+        setValue("date", formattedDate);
+        setValue("running", running);
+        setValue("scripting", scripting);
+        setValue("audience", audience);
+        setValue("credits", credits);
       } catch (err) {
-        console.error("Error fetching data:", err);
+        console.log("Error fetching data: ", err);
       }
     };
 
     fetchData();
-  }, []);
+  }, [setValue]);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get('/api/notifications');
-  //       console.log('NOTIFICATIONS:', response.data);
-  //     } catch (err) {
-  //       console.error('Error fetching data:', err);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
+  const date = watch("date");
+  const running = watch("running");
+  const scripting = watch("scripting");
+  const audience = watch("audience");
+  const credits = watch("credits");
 
   return (
-    <Grid container sx={{ display: "flex", flexDirection: "row" }}>
+    <Grid container sx={{ display: "flex" }}>
       <Grid container md={12} xl={9} sx={{ display: "flex" }}>
         <Grid item md={12} xl={12}>
           <Grid
@@ -190,10 +204,15 @@ export default function Home() {
           xl={12}
           sx={{
             backgroundColor: "#ff0",
-            height: "50vh" // PLACEHOLDER
+            height: "50vh", // PLACEHOLDER
           }}
         >
-          AREA PRINCIPAL
+          <Grid>
+            <CreditDashboard credits={credits} />
+            <Grid>
+              
+            </Grid>
+          </Grid>
         </Grid>
 
         <Grid
@@ -203,7 +222,7 @@ export default function Home() {
             backgroundColor: "#0ff",
             textAlign: "center",
             display: { md: "block", xl: "none " },
-            height: "70vh" // PLACEHOLDER
+            height: "70vh", // PLACEHOLDER
           }}
         >
           NOTIFICAÇÕES
@@ -216,7 +235,7 @@ export default function Home() {
         sx={{
           backgroundColor: "#f0f",
           display: { xs: "none", sm: "none", md: "none", xl: "block" },
-          height: "90vh", // PLACEHOLDER
+          height: "82vh", // PLACEHOLDER
         }}
       >
         NOTIFICAÇÕES

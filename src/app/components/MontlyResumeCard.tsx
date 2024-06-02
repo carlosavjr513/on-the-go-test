@@ -19,7 +19,7 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
       sx={{
         color: "#8A9099",
         backgroundColor: "#242528",
-        padding: 3,
+        padding: 2,
         borderRadius: 1,
         display: "flex",
         position: "relative",
@@ -31,7 +31,7 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          gap: 4,
+          gap: 5,
         }}
       >
         <Grid>
@@ -66,7 +66,7 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
           <Typography
             variant="body1"
             sx={{
-              fontWeight: 700,
+              fontWeight: 500,
               display: "flex",
               flexDirection: "column",
               width: "60%",
