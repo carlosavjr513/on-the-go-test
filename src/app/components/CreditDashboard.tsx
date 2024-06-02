@@ -14,10 +14,11 @@ const CreditDashboard: React.FC<CreditDashboardProps> = ({ credits }) => {
       <Grid
         container
         sx={{
-          backgroundColor: "#ffffff",
+          padding: 1,
           border: 1,
           borderRadius: 1,
-          borderColor: "#C9D1D6",
+          borderColor: "#C9D1D6",          
+          backgroundColor: "#ffffff",
         }}
       >
         <Box
@@ -25,8 +26,6 @@ const CreditDashboard: React.FC<CreditDashboardProps> = ({ credits }) => {
             textAlign: "left",
             fontWeight: 400,
             fontSize: 12,
-            paddingTop: 1,
-            paddingLeft: 1,
           }}
         >
           CRÉDITOS PARA PAINEL
@@ -36,10 +35,11 @@ const CreditDashboard: React.FC<CreditDashboardProps> = ({ credits }) => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              gap: 2,
-              padding: 2,
-              justifyContent: "center",
+              justifyContent: "space-between",
               alignItems: "center",
+              paddingX: 5,
+              paddingY: 7,
+              gap: 2,
             }}
           >
             <Grid container sx={{ gap: 2 }}>
@@ -53,9 +53,10 @@ const CreditDashboard: React.FC<CreditDashboardProps> = ({ credits }) => {
             </Grid>
 
             <Button
+              disableRipple
               variant="outlined"
               size="large"
-              sx={{ width: "100%" }}
+              sx={{ width: "100%", borderColor: "#C9D1D6" }}
             >
               GERENCIAR CRÉDITOS
             </Button>

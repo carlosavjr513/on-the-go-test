@@ -1,13 +1,15 @@
 "use client";
-import { Add } from "@mui/icons-material";
+import { Add, Balance, Email } from "@mui/icons-material";
 // prettier-ignore
-import { Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, CardHeader, Divider, Grid, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import ContactsCard from "./components/Audience/ContactsCard";
 import CreditDashboard from "./components/CreditDashboard";
 import MontlyResumeCard from "./components/MontlyResumeCard";
 import { formatDate, splitRunning } from "./utils/functions";
+import SendedBalanceCard from "./components/Audience/SendedBalanceCard";
 
 export default function Home() {
   type HomeData = {
@@ -61,7 +63,7 @@ export default function Home() {
 
   return (
     <Grid container sx={{ display: "flex" }}>
-      <Grid container md={12} xl={9} sx={{ display: "flex" }}>
+      <Grid container md={12} xl={10} sx={{ display: "flex" }}>
         <Grid item md={12} xl={12}>
           <Grid
             container
@@ -69,8 +71,8 @@ export default function Home() {
             sx={{
               display: "flex",
               justifyContent: "space-evenly",
-              paddingY: 2,
-              paddingX: 1,
+              paddingY: 3,
+              paddingX: 0,
               gap: 2,
               backgroundColor: "#000000",
               color: "#ffffff",
@@ -82,7 +84,7 @@ export default function Home() {
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                gap: 1,
+                gap: 2,
               }}
             >
               <Grid
@@ -123,9 +125,8 @@ export default function Home() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                justifyContent: "center",
-                paddingY: 3,
-                paddingX: 5,
+                justifyContent: "center",                
+                paddingX: 7,
               }}
             >
               <img
@@ -198,15 +199,21 @@ export default function Home() {
           md={9}
           xl={12}
           sx={{
-            // backgroundColor: "#ff0",
-            height: "50vh", // PLACEHOLDER
+            backgroundColor: "#ff0", // PLACEHOLDER
+            paddingX: 7,
+            paddingY: 2,
+            display: "flex",
+            flexDirection: "row",
           }}
         >
-          <Grid sx={{ display: "flex", flexDirection: "row" }}>
-            <Grid xl={8}>
-              <CreditDashboard credits={credits} />
-            </Grid>
-            <Grid xl={4}>audiencia disparos</Grid>
+          <CreditDashboard credits={credits} />
+          <Grid
+            item
+            xl={4}
+            sx={{ display: "flex", flexDirection: "column", gap: 4 }}
+          >
+            <ContactsCard contacts={audience.contacts} />
+            <SendedBalanceCard audience={audience} />
           </Grid>
         </Grid>
 
@@ -226,11 +233,11 @@ export default function Home() {
 
       <Grid
         item
-        xl={3}
+        xl={2}
         sx={{
           backgroundColor: "#f0f",
           display: { xs: "none", sm: "none", md: "none", xl: "block" },
-          height: "82vh", // PLACEHOLDER
+          height: "74vh", // PLACEHOLDER
         }}
       >
         NOTIFICAÇÕES

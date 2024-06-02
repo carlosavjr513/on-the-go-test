@@ -31,7 +31,7 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          gap: 5,
+          gap: 3,
         }}
       >
         <Grid>
