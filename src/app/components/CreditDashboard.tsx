@@ -14,7 +14,6 @@ const CreditDashboard: React.FC<CreditDashboardProps> = ({ credits }) => {
       <Grid
         container
         sx={{
-  
           backgroundColor: "#ffffff",
           border: 1,
           borderRadius: 1,
@@ -52,15 +51,14 @@ const CreditDashboard: React.FC<CreditDashboardProps> = ({ credits }) => {
                 />
               ))}
             </Grid>
-            <Grid sx={{}}>
-              <Button
-                variant="outlined"
-                size="large"
-                sx={{ width: "100%", maxWidth: "320px" }}
-              >
-                GERENCIAR CRÉDITOS
-              </Button>
-            </Grid>
+
+            <Button
+              variant="outlined"
+              size="large"
+              sx={{ width: "100%" }}
+            >
+              GERENCIAR CRÉDITOS
+            </Button>
           </Grid>
         </Grid>
       </Grid>
