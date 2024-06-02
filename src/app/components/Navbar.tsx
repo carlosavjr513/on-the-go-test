@@ -1,15 +1,7 @@
-import React, { useState } from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Box,
-  MenuItem,
-  Menu,
-  Link,
-  IconButton,
-} from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+//prettier-ignore
+import { AppBar, Box, IconButton, Link, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
+import React, { useState } from "react";
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

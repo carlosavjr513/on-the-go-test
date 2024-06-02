@@ -1,7 +1,6 @@
-// MontlyResumeCard.tsx
-import React from "react";
-import { Container, Typography } from "@mui/material";
 import { Circle } from "@mui/icons-material";
+import { Grid, Typography } from "@mui/material";
+import React from "react";
 import CircleIndicator from "./CircleIndicator";
 import FillingBar from "./FillingBar";
 
@@ -15,7 +14,8 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
   dataType,
 }) => {
   return (
-    <Container
+    <Grid
+      container
       sx={{
         color: "#8A9099",
         backgroundColor: "#242528",
@@ -27,15 +27,15 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
         justifyContent: "space-between",
       }}
     >
-      <Container
+      <Grid
+        item
         sx={{
           display: "flex",
           flexDirection: "column",
-          margin: "0 20px",
           justifyContent: "space-between",
         }}
       >
-        <Container>
+        <Grid>
           <Typography variant="h6" sx={{ fontWeight: 700 }}>
             <span
               style={{
@@ -51,18 +51,18 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
                 : data}
             </span>
             {dataType === "scripting" ? <></> : <span>/</span>}
-            <span
-              style={{
-                fontWeight: 700,
-                fontSize: "18px",
-              }}
-            >
-              {dataType === "running"
-                ? `${data[1]}`
-                : dataType === "audience"
-                ? `${data.balance}`
-                : ""}
-            </span>
+            {dataType === "scripting" ? (
+              <></>
+            ) : (
+              <span
+                style={{
+                  fontWeight: 700,
+                  fontSize: "18px",
+                }}
+              >
+                {dataType === "running" ? `${data[1]}` : `${data.balance}`}
+              </span>
+            )}
           </Typography>
           <Typography
             variant="body1"
@@ -77,6 +77,11 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
                 <span>PESQUISAS</span>
                 <span>EM CAMPO</span>
               </>
+            ) : dataType === "audience" ? (
+              <>
+                <span>DISPAROS</span>
+                <span>FEITOS</span>
+              </>
             ) : (
               <>
                 <span>PESQUISAS SEM</span>
@@ -84,16 +89,16 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
               </>
             )}
           </Typography>
-        </Container>
+        </Grid>
         {dataType === "running" && <CircleIndicator count={data} />}
         {dataType === "audience" && (
           <FillingBar numerator={data.sended} denominator={data.balance} />
         )}
-      </Container>
+      </Grid>
       {dataType === "running" && (
-        <Circle sx={{ color: "#0AD2A5", fontSize: 8, marginRight: 1 }} />
+        <Circle sx={{ color: "#0AD2A5", fontSize: 8 }} />
       )}
-    </Container>
+    </Grid>
   );
 };
 

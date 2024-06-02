@@ -25,10 +25,3 @@ body {
   font-weight: 700;
   font-style: normal;
 }
-
-/* @media (min-width: 1536px) { */
-@media (min-width: 0px) {
-  .full-width-element {
-    max-width: none !important;
-  }
-}

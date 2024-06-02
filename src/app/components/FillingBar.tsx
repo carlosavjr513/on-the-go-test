@@ -1,5 +1,5 @@
-import React from "react";
 import LinearProgress from "@mui/material/LinearProgress";
+import React from "react";
 
 interface FillingBarProps {
   numerator: number;
@@ -7,7 +7,7 @@ interface FillingBarProps {
 }
 
 const FillingBar: React.FC<FillingBarProps> = ({ numerator, denominator }) => {
-  const value = numerator/denominator * 100;
+  const value = (numerator / denominator) * 100;
   return (
     <LinearProgress
       variant="determinate"
