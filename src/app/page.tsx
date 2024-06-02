@@ -51,109 +51,93 @@ export default function Home() {
   // }, []);
 
   return (
-    <Grid xl={12} sx={{ display: "flex" }}>
-      <Grid xl={12} sx={{ width: "100vw" }}>
-        <Grid
-          container
-          xl={12}
-          sx={{
-            display: "flex",
-            justifyContent: "space-evenly",
-            paddingY: 2,
-            paddingX: 1,
-            gap: 2,
-            backgroundColor: "#000000",
-            color: "#ffffff",
-          }}
-        >
+    <Grid container sx={{ display: "flex", flexDirection: "row" }}>
+      <Grid container md={12} xl={9} sx={{ display: "flex" }}>
+        <Grid item md={12} xl={12}>
           <Grid
-            item
-            xl={8}
+            container
+            xl={12}
             sx={{
               display: "flex",
-              flexDirection: "column",
-              gap: 1,
+              justifyContent: "space-evenly",
+              paddingY: 2,
+              paddingX: 1,
+              gap: 2,
+              backgroundColor: "#000000",
+              color: "#ffffff",
             }}
           >
             <Grid
               item
+              xl={8}
               sx={{
                 display: "flex",
-                justifyContent: "space-evenly",
-                alignItems: "flex-end",
-                gap: "20px",
-                paddingX: 5,
+                flexDirection: "column",
+                gap: 1,
               }}
             >
               <Grid
+                item
                 sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "10px",
+                  textAlign: "left",
+                  paddingX: 5,
                 }}
               >
-                <Grid
-                  item
-                  sx={{
-                    textAlign: "left",
-                  }}
+                <Typography
+                  variant="body1"
+                  sx={{ fontSize: 10, fontWeight: 400 }}
                 >
-                  <Typography
-                    variant="body1"
-                    sx={{ fontSize: 10, fontWeight: 400 }}
-                  >
-                    RESUMO MENSAL
-                  </Typography>
-                  <Typography
-                    variant="h5"
-                    sx={{ fontSize: 22, fontWeight: 700 }}
-                  >
-                    {date}
-                  </Typography>
-                </Grid>
-                <MontlyResumeCard dataType="running" data={running} />
+                  RESUMO MENSAL
+                </Typography>
+                <Typography variant="h5" sx={{ fontSize: 22, fontWeight: 700 }}>
+                  {date}
+                </Typography>
               </Grid>
-              <MontlyResumeCard dataType="scripting" data={scripting} />
-              <MontlyResumeCard dataType="audience" data={audience} />
+              <Grid
+                item
+                sx={{
+                  display: "flex",
+                  gap: 3,
+                  paddingX: 5,
+                }}
+              >
+                <MontlyResumeCard dataType="running" data={running} />
+                <MontlyResumeCard dataType="scripting" data={scripting} />
+                <MontlyResumeCard dataType="audience" data={audience} />
+              </Grid>
             </Grid>
-          </Grid>
-          <Grid
-            item
-            sx={{
-              backgroundColor: "#c7b2ff",
-              borderRadius: 1,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              paddingX: 5,
-            }}
-          >
-            <img
-              src="/img/new.gif"
-              alt="meetNewClientGif"
-              style={{ width: "92px", height: "92px" }}
-            />
-            <Typography
-              variant="body1"
-              fontWeight={700}
-              sx={{ color: "#000000", marginTop: "10px", padding: 1 }}
-            >
-              Pronto para conhecer o seu cliente?
-            </Typography>
-            <Box
+            <Grid
+              item
               sx={{
-                position: "relative",
-                width: "fit-content",
-                marginTop: "10px",
+                backgroundColor: "#c7b2ff",
+                borderRadius: 1,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                paddingY: 3,
+                paddingX: 5,
               }}
             >
+              <img
+                src="/img/new.gif"
+                alt="meetNewClientGif"
+                style={{ width: "92px", height: "92px" }}
+              />
+              <Typography
+                variant="body1"
+                fontWeight={700}
+                sx={{ color: "#000000", marginTop: "10px", padding: 1 }}
+              >
+                Pronto para conhecer o seu cliente?
+              </Typography>
+
               <Button
                 size="large"
                 variant="contained"
                 sx={{
                   backgroundColor: "#000000",
-                  width: "280px",
+                  width: "100%",
                   position: "relative",
                   overflow: "hidden",
                   display: "flex",
@@ -196,19 +180,43 @@ export default function Home() {
                   }}
                 />
               </Button>
-            </Box>
+            </Grid>
           </Grid>
         </Grid>
-        <Grid item xl={12} sx={{ backgroundColor: "#ff0", height: "50vh" }}>
+
+        <Grid
+          item
+          md={9}
+          xl={12}
+          sx={{
+            backgroundColor: "#ff0",
+            height: "50vh" // PLACEHOLDER
+          }}
+        >
           AREA PRINCIPAL
         </Grid>
+
+        <Grid
+          item
+          md={3}
+          sx={{
+            backgroundColor: "#0ff",
+            textAlign: "center",
+            display: { md: "block", xl: "none " },
+            height: "70vh" // PLACEHOLDER
+          }}
+        >
+          NOTIFICAÇÕES
+        </Grid>
       </Grid>
+
       <Grid
+        item
+        xl={3}
         sx={{
-          backgroundColor: "#0ff",
-          height: "85vh",
-          width: "400px",
-          textAlign: "center",
+          backgroundColor: "#f0f",
+          display: { xs: "none", sm: "none", md: "none", xl: "block" },
+          height: "90vh", // PLACEHOLDER
         }}
       >
         NOTIFICAÇÕES

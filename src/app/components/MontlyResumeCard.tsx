@@ -19,12 +19,10 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
       sx={{
         color: "#8A9099",
         backgroundColor: "#242528",
-        padding: "12px",
+        padding: 3,
         borderRadius: 1,
-        height: "171px",
-        width: "212px",
         display: "flex",
-        justifyContent: "space-between",
+        position: "relative",
       }}
     >
       <Grid
@@ -33,6 +31,7 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
+          gap: 4,
         }}
       >
         <Grid>
@@ -70,23 +69,15 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
               fontWeight: 700,
               display: "flex",
               flexDirection: "column",
+              width: "60%",
             }}
           >
             {dataType === "running" ? (
-              <>
-                <span>PESQUISAS</span>
-                <span>EM CAMPO</span>
-              </>
+              <span>PESQUISAS EM CAMPO</span>
             ) : dataType === "audience" ? (
-              <>
-                <span>DISPAROS</span>
-                <span>FEITOS</span>
-              </>
+              <span>DISPAROS FEITOS</span>
             ) : (
-              <>
-                <span>PESQUISAS SEM</span>
-                <span>ROTEIRIZAÇÃO</span>
-              </>
+              <span>PESQUISAS SEM ROTEIRIZAÇÃO</span>
             )}
           </Typography>
         </Grid>
@@ -96,7 +87,15 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
         )}
       </Grid>
       {dataType === "running" && (
-        <Circle sx={{ color: "#0AD2A5", fontSize: 8 }} />
+        <Circle
+          sx={{
+            color: "#0AD2A5",
+            fontSize: 8,
+            position: "absolute",
+            top: 16,
+            right: 8,
+          }}
+        />
       )}
     </Grid>
   );
