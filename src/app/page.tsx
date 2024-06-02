@@ -10,11 +10,6 @@ import MontlyResumeCard from "./components/MontlyResumeCard";
 import { formatDate, splitRunning } from "./utils/functions";
 
 export default function Home() {
-  // const [date, setDate] = useState<string>("");
-  // const [running, setRunning] = useState<[number, number]>([0, 0]);
-  // const [scripting, setScripting] = useState<string>("");
-  // const [audience, setAudience] = useState<any>("");
-
   type HomeData = {
     date: string;
     running: [number, number];
@@ -203,15 +198,15 @@ export default function Home() {
           md={9}
           xl={12}
           sx={{
-            backgroundColor: "#ff0",
+            // backgroundColor: "#ff0",
             height: "50vh", // PLACEHOLDER
           }}
         >
-          <Grid>
-            <CreditDashboard credits={credits} />
-            <Grid>
-              
+          <Grid sx={{ display: "flex", flexDirection: "row" }}>
+            <Grid xl={8}>
+              <CreditDashboard credits={credits} />
             </Grid>
+            <Grid xl={4}>audiencia disparos</Grid>
           </Grid>
         </Grid>
 

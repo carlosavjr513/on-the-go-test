@@ -1,5 +1,5 @@
 // prettier-ignore
-import { Box, Button, Card, CardActions, CardContent, Grid, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, Grid, Typography } from "@mui/material";
 import React from "react";
 
 type CreditDashboardProps = {
@@ -10,41 +10,73 @@ const CreditDashboard: React.FC<CreditDashboardProps> = ({ credits }) => {
   const orderedKeys = ["available", "running", "reserved"];
 
   return (
-    <Grid
-      sx={{
-        // backgroundColor: "#0f0",
-        padding: 2,
-      }}
-    >
-      <Box sx={{}}>
+    <Grid sx={{ paddingX: 5 }}>
+      <Grid
+        container
+        sx={{
+  
+          backgroundColor: "#ffffff",
+          border: 1,
+          borderRadius: 1,
+          borderColor: "#C9D1D6",
+        }}
+      >
         <Box
           sx={{
             textAlign: "left",
             fontWeight: 400,
             fontSize: 12,
+            paddingTop: 1,
+            paddingLeft: 1,
           }}
         >
           CRÉDITOS PARA PAINEL
         </Box>
-        <Grid container sx={{ gap: 2 }}>
-          {orderedKeys.map((key) => (
-            <CreditCard key={key} title={key} value={credits[key]} />
-          ))}
+        <Grid container sx={{ justifyContent: "center" }}>
+          <Grid
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+              padding: 2,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Grid container sx={{ gap: 2 }}>
+              {orderedKeys.map((key) => (
+                <DashboardCreditCard
+                  key={key}
+                  title={key}
+                  value={credits[key]}
+                />
+              ))}
+            </Grid>
+            <Grid sx={{}}>
+              <Button
+                variant="outlined"
+                size="large"
+                sx={{ width: "100%", maxWidth: "320px" }}
+              >
+                GERENCIAR CRÉDITOS
+              </Button>
+            </Grid>
+          </Grid>
         </Grid>
-      </Box>
-      <Grid sx={{}}>
-        <Button variant="outlined">GERENCIAR CRÉDITOS</Button>
       </Grid>
     </Grid>
   );
 };
 
-type CreditCardProps = {
+type DashboardCreditCardProps = {
   title: string;
   value: any;
 };
 
-const CreditCard: React.FC<CreditCardProps> = ({ title, value }) => {
+const DashboardCreditCard: React.FC<DashboardCreditCardProps> = ({
+  title,
+  value,
+}) => {
   let borderColor = "";
   let fontColor = "";
 
@@ -71,9 +103,7 @@ const CreditCard: React.FC<CreditCardProps> = ({ title, value }) => {
         borderBottom: 10,
         borderRadius: 1,
         textAlign: "center",
-        paddingX: 1,
-        paddingY: 2,
-        // maxWidth: "120px", // PLACEHOLDER
+        padding: 2,
         borderColor: borderColor,
       }}
     >
@@ -86,15 +116,32 @@ const CreditCard: React.FC<CreditCardProps> = ({ title, value }) => {
         </Typography>
         <Typography
           variant="body2"
-          sx={{ fontWeight: 500, fontSize: 12, color: fontColor }}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            fontWeight: 500,
+            fontSize: 12,
+            color: fontColor,
+          }}
         >
-          {title === "available"
-            ? "CRÉDITOS DISPONÍVEIS"
-            : title === "running"
-            ? "CRÉDITOS EM CAMPO"
-            : title === "reserved"
-            ? "CRÉDITOS RESERVADOS"
-            : ""}
+          {title === "available" ? (
+            <>
+              <span>CRÉDITOS</span>
+              <span>DISPONÍVEIS</span>
+            </>
+          ) : title === "running" ? (
+            <>
+              <span>CRÉDITOS</span>
+              <span>EM CAMPO</span>
+            </>
+          ) : title === "reserved" ? (
+            <>
+              <span>CRÉDITOS</span>
+              <span>RESERVADOS</span>
+            </>
+          ) : (
+            ""
+          )}
         </Typography>
       </CardContent>
     </Card>
