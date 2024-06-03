@@ -27,7 +27,7 @@ const SendedBalanceCard: React.FC<SendedBalanceCardProps> = ({ audience }) => {
         boxShadow: "none",
       }}
     >
-      <CardHeader avatar={<Email />} title="DISPAROS" sx={{ padding: 1 }} />
+      <CardHeader avatar={<Email />} title="DISPAROS" sx={{ p: 0.5 }} />
       <Divider />
       <CardContent
         sx={{

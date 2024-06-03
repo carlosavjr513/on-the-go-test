@@ -47,13 +47,12 @@ const MyResearchesCard: React.FC<MyResearchCardProps> = ({ myResearch }) => {
       onMouseLeave={handleMouseLeave}
     >
       <CardContent sx={{ height: 150 }}>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box sx={{ display: "flex", alignItems: "center", px: 1 }}>
           <Box
             sx={{
               textAlign: "left",
               borderLeft: 2,
               borderColor: "#000000",
-              flex: "1",
             }}
             className="box"
           >
@@ -63,10 +62,32 @@ const MyResearchesCard: React.FC<MyResearchCardProps> = ({ myResearch }) => {
                 fontSize: 12,
                 ml: 0.5,
                 transition: "color 0.3s",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
               }}
               className="hovered"
             >
               {myResearch.status}
+              {myResearch.status === "Rascunho" ? (
+                <img
+                  src={isHovered ? "/img/newHoveredSvg.svg" : "/img/newSvg.svg"}
+                  alt="NewIcon"
+                  style={{
+                    height: 24,
+                  }}
+                />
+              ) : (
+                <Circle
+                  sx={{
+                    color: "#0AD2A5",
+                    fontSize: 8,
+                    position: "absolute",
+                    marginLeft: "165px",
+                    marginTop: "-20px",
+                  }}
+                />
+              )}
             </Typography>
             <Typography
               sx={{
@@ -74,36 +95,12 @@ const MyResearchesCard: React.FC<MyResearchCardProps> = ({ myResearch }) => {
                 fontSize: 18,
                 ml: 0.5,
                 transition: "color 0.3s",
-                color: myResearch.status === "Rascunho" ? "#C3C7CA" : "#000"
+                color: myResearch.status === "Rascunho" ? "#C3C7CA" : "#000",
               }}
               className="hovered"
             >
               {myResearch.name}
             </Typography>
-          </Box>
-          <Box sx={{ position: "relative" }}>
-            {myResearch.status === "Rascunho" ? (
-              <img
-                src={isHovered ? "/img/newHoveredSvg.svg" : "/img/newSvg.svg"}
-                alt="NewIcon"
-                style={{
-                  height: 24,
-                  bottom: 6,
-                  right: 90,
-                  position: "absolute",
-                }}
-              />
-            ) : (
-              <Circle
-                sx={{
-                  color: "#0AD2A5",
-                  fontSize: 8,
-                  position: "absolute",
-                  bottom: 20,
-                  right: -10,
-                }}
-              />
-            )}
           </Box>
         </Box>
       </CardContent>

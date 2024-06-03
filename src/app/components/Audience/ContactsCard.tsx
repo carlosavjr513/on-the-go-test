@@ -25,7 +25,7 @@ const ContactsCard: React.FC<ContactsCardProps> = ({ contacts }) => {
         boxShadow: "none",
       }}
     >
-      <CardHeader avatar={<Groups />} title="AUDIÊNCIA" sx={{ padding: 1 }} />
+      <CardHeader avatar={<Groups />} title="AUDIÊNCIA" sx={{ p: 0.5 }} />
       <Divider />
       <CardContent
         sx={{
@@ -52,7 +52,7 @@ const ContactsCard: React.FC<ContactsCardProps> = ({ contacts }) => {
             borderColor: "#C9D1D6",
             height: "48px",
             width: "48px",
-            padding: 0
+            p: 0
           }}
         >
           <ArrowForward fontSize="small" />

@@ -71,13 +71,6 @@ export default function Home() {
 
   const { date, running, scripting, audience, credits, myResearches } = watch();
 
-  // const date = watch("date");
-  // const myResearches = watch("myResearches");
-  // const running = watch("running");
-  // const scripting = watch("scripting");
-  // const audience = watch("audience");
-  // const credits = watch("credits");
-
   return (
     <Grid container sx={{ display: "flex" }}>
       <Grid container md={12} xl={9} sx={{ display: "flex" }}>
@@ -154,7 +147,7 @@ export default function Home() {
               <Typography
                 variant="body1"
                 fontWeight={700}
-                sx={{ color: "#000000", marginTop: "10px", padding: 1 }}
+                sx={{ color: "#000000", marginTop: "10px", p: 1 }}
               >
                 Pronto para conhecer o seu cliente?
               </Typography>
@@ -211,27 +204,28 @@ export default function Home() {
           </Grid>
         </Grid>
 
-        <Grid item
-            md={9}
-            xl={12}
-            sx={{
-              // backgroundColor: "#8000ff", // PLACEHOLDER
-              px: 0,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",              
-            }} >
+        <Grid
+          item
+          md={9}
+          xl={12}
+          sx={{
+            // backgroundColor: "#8000ff", // PLACEHOLDER
+            px: 0,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
           <Grid
             item
             sx={{
               // backgroundColor: "#00f", // PLACEHOLDER
-              px: 7,
-              py: 2,
+              p: 0,
               display: "flex",
               justifyContent: "center",
-              gap: 2,
             }}
           >
+            {/* <MyResearchesCarousel myResearches={myResearches.concat(myResearches)} /> */}
             <MyResearchesCarousel myResearches={myResearches} />
           </Grid>
 
@@ -240,7 +234,7 @@ export default function Home() {
             sx={{
               // backgroundColor: "#ff0", // PLACEHOLDER
               px: 7,
-              py: 2,
+              py: 1,
               justifyContent: "center",
               display: "flex",
             }}

@@ -14,7 +14,7 @@ const DashboardCredit: React.FC<DashboardCreditProps> = ({ credits }) => {
       <Grid
         container
         sx={{
-          padding: 1,
+          p: 1,
           border: 1,
           borderRadius: 1,
           borderColor: "#C9D1D6",
@@ -38,7 +38,7 @@ const DashboardCredit: React.FC<DashboardCreditProps> = ({ credits }) => {
               justifyContent: "space-between",
               alignItems: "center",
               px: 5,
-              py: 7,
+              py: 6,
               gap: 2,
             }}
           >

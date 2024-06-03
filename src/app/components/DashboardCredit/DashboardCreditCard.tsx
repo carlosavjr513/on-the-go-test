@@ -35,7 +35,7 @@ const DashboardCreditCard: React.FC<DashboardCreditCardProps> = ({
         borderBottom: 10,
         borderRadius: 1,
         textAlign: "center",
-        padding: 2,
+        p: 2,
         borderColor: borderColor,
       }}
     >

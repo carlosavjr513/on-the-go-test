@@ -19,7 +19,7 @@ const Navbar = () => {
       position="static"
       sx={{
         backgroundColor: "#000000",
-        padding: "8px 12px 8px 26px",
+        p: "8px 12px 8px 26px",
         borderBottom: "1px solid #242528",
       }}
     >
@@ -62,7 +62,7 @@ const Navbar = () => {
               alignItems: "center",
               border: "1px solid #242528",
               borderRadius: "4px",
-              padding: "4px 8px",
+              p: "4px 8px",
               gap: "10px",
             }}
           >

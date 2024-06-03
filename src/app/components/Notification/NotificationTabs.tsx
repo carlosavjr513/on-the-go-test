@@ -95,7 +95,7 @@ const NotificationTabs: React.FC = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-start",
-          padding: 1,
+          p: 1,
           gap: 1,
         }}
       >
@@ -109,7 +109,7 @@ const NotificationTabs: React.FC = () => {
             justifyContent: "center",
             alignItems: "center",
             fontSize: "12px",
-            padding: "2px 10px",
+            p: "2px 10px",
           }}
         >
           {notifications.length}

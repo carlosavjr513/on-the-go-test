@@ -19,7 +19,7 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
       sx={{
         color: "#8A9099",
         backgroundColor: "#242528",
-        padding: 2,
+        p: 2,
         borderRadius: 1,
         display: "flex",
         position: "relative",

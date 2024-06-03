@@ -40,20 +40,20 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
         marginY: 1,
       }}
     >
-      <CardContent sx={{ padding: 1 }}>
+      <CardContent sx={{ p: 1 }}>
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            padding: 0,
+            p: 0,
           }}
         >
           <Box
             sx={{
               display: "flex",
               gap: 1,
-              padding: 0,
+              p: 0,
             }}
           >
             <CommentIcon fontSize="small" />
@@ -78,7 +78,7 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            padding: 0,
+            p: 0,
           }}
         >
           <Typography
@@ -98,7 +98,7 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
               borderColor: "#C9D1D6",
               height: "48px",
               width: "48px",
-              padding: 0,
+              p: 0,
               position: "relative",
               overflow: "hidden",
               "&::before": {
