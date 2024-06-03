@@ -1,24 +1,26 @@
 "use client";
-import { Add, Balance, Email } from "@mui/icons-material";
+import { Add } from "@mui/icons-material";
 // prettier-ignore
-import { Box, Button, Card, CardContent, CardHeader, Divider, Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import ContactsCard from "./components/Audience/ContactsCard";
-import CreditDashboard from "./components/CreditDashboard";
-import MontlyResumeCard from "./components/MontlyResumeCard";
-import { formatDate, splitRunning } from "./utils/functions";
 import SendedBalanceCard from "./components/Audience/SendedBalanceCard";
+import DashboardCredit from "./components/DashboardCredit/DashboardCredit";
+import MontlyResumeCard from "./components/MontlyResume/MontlyResumeCard";
+import NotificationTabs from "./components/Notification/NotificationTabs";
+import { formatDate, splitRunning } from "./utils/functions";
+
+interface HomeData {
+  date: string;
+  running: [number, number];
+  scripting: string;
+  audience: any;
+  credits: { [key: string]: number };
+};
 
 export default function Home() {
-  type HomeData = {
-    date: string;
-    running: [number, number];
-    scripting: string;
-    audience: any;
-    credits: { [key: string]: number };
-  };
 
   const { register, setValue, watch } = useForm<HomeData>({
     defaultValues: {
@@ -31,16 +33,17 @@ export default function Home() {
   });
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchHome = async () => {
       try {
-        const response = await axios.get("/api/home/7a581b0e16b559ff9a9957");
-        console.log("HOME:", response.data);
+        // prettier-ignore
+        const homeResponse = await axios.get("/api/home/7a581b0e16b559ff9a9957");
+        console.log("HOME: ", homeResponse.data);
 
-        const formattedDate = formatDate(response.data.createAt);
-        const running = splitRunning(response.data.researches.running);
-        const scripting = response.data.researches.scripting;
-        const audience = response.data.audience;
-        const credits = response.data.credits;
+        const formattedDate = formatDate(homeResponse.data.createAt);
+        const running = splitRunning(homeResponse.data.researches.running);
+        const scripting = homeResponse.data.researches.scripting;
+        const audience = homeResponse.data.audience;
+        const credits = homeResponse.data.credits;
 
         setValue("date", formattedDate);
         setValue("running", running);
@@ -52,7 +55,7 @@ export default function Home() {
       }
     };
 
-    fetchData();
+    fetchHome();
   }, [setValue]);
 
   const date = watch("date");
@@ -63,7 +66,7 @@ export default function Home() {
 
   return (
     <Grid container sx={{ display: "flex" }}>
-      <Grid container md={12} xl={10} sx={{ display: "flex" }}>
+      <Grid container md={12} xl={9} sx={{ display: "flex" }}>
         <Grid item md={12} xl={12}>
           <Grid
             container
@@ -125,7 +128,7 @@ export default function Home() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                justifyContent: "center",                
+                justifyContent: "center",
                 paddingX: 7,
               }}
             >
@@ -199,14 +202,14 @@ export default function Home() {
           md={9}
           xl={12}
           sx={{
-            backgroundColor: "#ff0", // PLACEHOLDER
+            // backgroundColor: "#ff0", // PLACEHOLDER
             paddingX: 7,
             paddingY: 2,
             display: "flex",
             flexDirection: "row",
           }}
         >
-          <CreditDashboard credits={credits} />
+          <DashboardCredit credits={credits} />
           <Grid
             item
             xl={4}
@@ -221,26 +224,26 @@ export default function Home() {
           item
           md={3}
           sx={{
-            backgroundColor: "#0ff",
+            // backgroundColor: "#0ff",
             textAlign: "center",
             display: { md: "block", xl: "none " },
             height: "70vh", // PLACEHOLDER
           }}
         >
-          NOTIFICAÇÕES
+          <NotificationTabs />
         </Grid>
       </Grid>
 
       <Grid
         item
-        xl={2}
+        xl={3}
         sx={{
-          backgroundColor: "#f0f",
+          // backgroundColor: "#f0f",
           display: { xs: "none", sm: "none", md: "none", xl: "block" },
-          height: "74vh", // PLACEHOLDER
+          // height: "74vh", // PLACEHOLDER
         }}
       >
-        NOTIFICAÇÕES
+        <NotificationTabs />
       </Grid>
     </Grid>
   );

@@ -50,11 +50,12 @@ const ContactsCard: React.FC<ContactsCardProps> = ({ contacts }) => {
           size="large"
           sx={{
             borderColor: "#C9D1D6",
-            height: "50px",
+            height: "48px",
             width: "48px",
+            padding: 0
           }}
         >
-          <ArrowForward />
+          <ArrowForward fontSize="small" />
         </Button>
       </CardContent>
     </Card>

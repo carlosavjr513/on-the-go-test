@@ -5,9 +5,9 @@ const theme = createTheme({
     primary: {
       main: "#000000",
     },
-    secondary: {
-      main: "#FF5D55",
-    },
+    text: {
+      primary: "#000000"
+    }
   },
   typography: {
     fontFamily: "Public Sans, sans-serif",
