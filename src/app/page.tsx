@@ -11,24 +11,33 @@ import DashboardCredit from "./components/DashboardCredit/DashboardCredit";
 import MontlyResumeCard from "./components/MontlyResume/MontlyResumeCard";
 import NotificationTabs from "./components/Notification/NotificationTabs";
 import { formatDate, splitRunning } from "./utils/functions";
+import MyResearchCard from "./components/MyResearches/MyResearchCard";
+import MyResearchesCarousel from "./components/MyResearches/MyResearchesCarousel";
+
+interface MyResearch {
+  name: string;
+  id: number;
+  status: string;
+}
 
 interface HomeData {
   date: string;
   running: [number, number];
-  scripting: string;
+  scripting: number;
   audience: any;
   credits: { [key: string]: number };
-};
+  myResearches: MyResearch[];
+}
 
 export default function Home() {
-
   const { register, setValue, watch } = useForm<HomeData>({
     defaultValues: {
       date: "",
       running: [0, 0],
-      scripting: "",
+      scripting: 0,
       audience: {},
       credits: {},
+      myResearches: [],
     },
   });
 
@@ -44,8 +53,10 @@ export default function Home() {
         const scripting = homeResponse.data.researches.scripting;
         const audience = homeResponse.data.audience;
         const credits = homeResponse.data.credits;
+        const myResearches = homeResponse.data.researches.myresearches;
 
         setValue("date", formattedDate);
+        setValue("myResearches", myResearches);
         setValue("running", running);
         setValue("scripting", scripting);
         setValue("audience", audience);
@@ -58,11 +69,14 @@ export default function Home() {
     fetchHome();
   }, [setValue]);
 
-  const date = watch("date");
-  const running = watch("running");
-  const scripting = watch("scripting");
-  const audience = watch("audience");
-  const credits = watch("credits");
+  const { date, running, scripting, audience, credits, myResearches } = watch();
+
+  // const date = watch("date");
+  // const myResearches = watch("myResearches");
+  // const running = watch("running");
+  // const scripting = watch("scripting");
+  // const audience = watch("audience");
+  // const credits = watch("credits");
 
   return (
     <Grid container sx={{ display: "flex" }}>
@@ -197,26 +211,49 @@ export default function Home() {
           </Grid>
         </Grid>
 
-        <Grid
-          item
-          md={9}
-          xl={12}
-          sx={{
-            // backgroundColor: "#ff0", // PLACEHOLDER
-            px: 7,
-            py: 2,
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          <DashboardCredit credits={credits} />
+        <Grid item
+            md={9}
+            xl={12}
+            sx={{
+              // backgroundColor: "#8000ff", // PLACEHOLDER
+              px: 0,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",              
+            }} >
           <Grid
             item
-            xl={4}
-            sx={{ display: "flex", flexDirection: "column", gap: 4 }}
+            sx={{
+              // backgroundColor: "#00f", // PLACEHOLDER
+              px: 7,
+              py: 2,
+              display: "flex",
+              justifyContent: "center",
+              gap: 2,
+            }}
           >
-            <ContactsCard contacts={audience.contacts} />
-            <SendedBalanceCard audience={audience} />
+            <MyResearchesCarousel myResearches={myResearches} />
+          </Grid>
+
+          <Grid
+            item
+            sx={{
+              // backgroundColor: "#ff0", // PLACEHOLDER
+              px: 7,
+              py: 2,
+              justifyContent: "center",
+              display: "flex",
+            }}
+          >
+            <DashboardCredit credits={credits} />
+            <Grid
+              item
+              xl={4}
+              sx={{ display: "flex", flexDirection: "column", gap: 4 }}
+            >
+              <ContactsCard contacts={audience.contacts} />
+              <SendedBalanceCard audience={audience} />
+            </Grid>
           </Grid>
         </Grid>
 
@@ -227,7 +264,6 @@ export default function Home() {
             // backgroundColor: "#0ff",
             textAlign: "center",
             display: { md: "block", xl: "none " },
-            height: "70vh", // PLACEHOLDER
           }}
         >
           <NotificationTabs />
@@ -240,7 +276,6 @@ export default function Home() {
         sx={{
           // backgroundColor: "#f0f",
           display: { xs: "none", sm: "none", md: "none", xl: "block" },
-          // height: "74vh", // PLACEHOLDER
         }}
       >
         <NotificationTabs />
