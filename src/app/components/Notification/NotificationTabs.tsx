@@ -30,19 +30,7 @@ const TabPanel: React.FC<TabPanelProps> = (props) => {
       {...other}
     >
       {value === index && (
-        <Box
-          sx={{
-            p: 3,
-            height: "70vh",
-            overflowY: "auto",
-            "&::-webkit-scrollbar": {
-              display: "none", 
-            },
-            "&": {
-              scrollbarWidth: "none", 
-            },
-          }}
-        >
+        <Box sx={{ p: 3 }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -71,9 +59,9 @@ const NotificationTabs: React.FC = () => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const notificationsResponse = await axios.get("/api/notifications");
-        console.log("NOTIFICAÇÃO: ", notificationsResponse.data);
-        setValue("notifications", notificationsResponse.data);
+        const response = await axios.get("/api/notifications");
+        console.log("NOTIFICAÇÃO: ", response.data);
+        setValue("notifications", response.data);
       } catch (error) {
         console.error("Error fetching notifications: ", error);
       }
@@ -95,7 +83,7 @@ const NotificationTabs: React.FC = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-start",
-          padding: 1,
+          padding: 0,
           gap: 1,
         }}
       >
@@ -115,19 +103,11 @@ const NotificationTabs: React.FC = () => {
           {notifications.length}
         </Box>
       </Box>
-      <Box sx={{ width: "100%", paddingX: 1 }}>
+      <Box sx={{ width: '100%' }}>
         <Tabs
           value={valueTab}
           onChange={handleChange}
           aria-label="Notification tabs"
-          sx={{
-            "& .MuiTabs-indicator": {
-              backgroundColor: "#FF5D55",
-            },
-            "& .MuiTab-root.Mui-selected": {
-              color: "#FF5D55",
-            },
-          }}
         >
           <Tab label="Todas" {...a11yProps(0)} />
         </Tabs>
