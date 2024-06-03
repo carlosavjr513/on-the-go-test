@@ -74,8 +74,8 @@ export default function Home() {
             sx={{
               display: "flex",
               justifyContent: "space-evenly",
-              paddingY: 3,
-              paddingX: 0,
+              py: 3,
+              px: 0,
               gap: 2,
               backgroundColor: "#000000",
               color: "#ffffff",
@@ -94,7 +94,7 @@ export default function Home() {
                 item
                 sx={{
                   textAlign: "left",
-                  paddingX: 5,
+                  px: 5,
                 }}
               >
                 <Typography
@@ -112,7 +112,7 @@ export default function Home() {
                 sx={{
                   display: "flex",
                   gap: 3,
-                  paddingX: 5,
+                  px: 5,
                 }}
               >
                 <MontlyResumeCard dataType="running" data={running} />
@@ -129,7 +129,7 @@ export default function Home() {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                paddingX: 7,
+                px: 7,
               }}
             >
               <img
@@ -203,8 +203,8 @@ export default function Home() {
           xl={12}
           sx={{
             // backgroundColor: "#ff0", // PLACEHOLDER
-            paddingX: 7,
-            paddingY: 2,
+            px: 7,
+            py: 2,
             display: "flex",
             flexDirection: "row",
           }}

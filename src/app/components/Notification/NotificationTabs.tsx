@@ -30,8 +30,20 @@ const TabPanel: React.FC<TabPanelProps> = (props) => {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+        <Box
+          sx={{
+            p: 3,
+            height: "70vh",
+            overflowY: "auto",
+            "&::-webkit-scrollbar": {
+              display: "none",
+            },
+            "&": {
+              scrollbarWidth: "none",
+            },
+          }}
+        >
+          {children}
         </Box>
       )}
     </div>
@@ -59,9 +71,9 @@ const NotificationTabs: React.FC = () => {
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const response = await axios.get("/api/notifications");
-        console.log("NOTIFICAÇÃO: ", response.data);
-        setValue("notifications", response.data);
+        const notificationsResponse = await axios.get("/api/notifications");
+        console.log("NOTIFICAÇÃO: ", notificationsResponse.data);
+        setValue("notifications", notificationsResponse.data);
       } catch (error) {
         console.error("Error fetching notifications: ", error);
       }
@@ -77,13 +89,13 @@ const NotificationTabs: React.FC = () => {
   };
 
   return (
-    <>
+    <Box sx={{ maxWidth: "100%", overflow: "hidden" }}>
       <Box
         sx={{
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-start",
-          padding: 0,
+          padding: 1,
           gap: 1,
         }}
       >
@@ -103,11 +115,19 @@ const NotificationTabs: React.FC = () => {
           {notifications.length}
         </Box>
       </Box>
-      <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: "100%", px: 1 }}>
         <Tabs
           value={valueTab}
           onChange={handleChange}
           aria-label="Notification tabs"
+          sx={{
+            "& .MuiTabs-indicator": {
+              backgroundColor: "#FF5D55",
+            },
+            "& .MuiTab-root.Mui-selected": {
+              color: "#FF5D55",
+            },
+          }}
         >
           <Tab label="Todas" {...a11yProps(0)} />
         </Tabs>
@@ -120,7 +140,7 @@ const NotificationTabs: React.FC = () => {
           ))}
         </TabPanel>
       </Box>
-    </>
+    </Box>
   );
 };
 

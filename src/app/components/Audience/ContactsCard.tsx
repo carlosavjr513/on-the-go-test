@@ -32,8 +32,8 @@ const ContactsCard: React.FC<ContactsCardProps> = ({ contacts }) => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          paddingY: 0,
-          paddingX: 2,
+          py: 0,
+          px: 2,
         }}
       >
         <Box>

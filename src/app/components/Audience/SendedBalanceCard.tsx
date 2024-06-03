@@ -34,8 +34,8 @@ const SendedBalanceCard: React.FC<SendedBalanceCardProps> = ({ audience }) => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          paddingY: 0,
-          paddingX: 2,
+          py: 0,
+          px: 2,
         }}
       >
         <Box sx={{ marginBottom: 2 }}>

@@ -10,7 +10,7 @@ const DashboardCredit: React.FC<DashboardCreditProps> = ({ credits }) => {
   const orderedKeys = ["available", "running", "reserved"];
 
   return (
-    <Grid sx={{ paddingX: 5 }}>
+    <Grid sx={{ px: 5 }}>
       <Grid
         container
         sx={{
@@ -37,8 +37,8 @@ const DashboardCredit: React.FC<DashboardCreditProps> = ({ credits }) => {
               flexDirection: "column",
               justifyContent: "space-between",
               alignItems: "center",
-              paddingX: 5,
-              paddingY: 7,
+              px: 5,
+              py: 7,
               gap: 2,
             }}
           >
