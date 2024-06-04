@@ -23,6 +23,7 @@ const ContactsCard: React.FC<ContactsCardProps> = ({ contacts }) => {
         borderRadius: 1,
         borderColor: "#C9D1D6",
         boxShadow: "none",
+        m: 1,
       }}
     >
       <CardHeader avatar={<Groups />} title="AUDIÊNCIA" sx={{ p: 0.5 }} />
@@ -33,7 +34,7 @@ const ContactsCard: React.FC<ContactsCardProps> = ({ contacts }) => {
           justifyContent: "space-between",
           alignItems: "center",
           py: 0,
-          px: 2,
+          px: 1,
         }}
       >
         <Box>
@@ -52,10 +53,10 @@ const ContactsCard: React.FC<ContactsCardProps> = ({ contacts }) => {
             borderColor: "#C9D1D6",
             height: "48px",
             width: "48px",
-            p: 0
+            p: 0,
           }}
         >
-          <ArrowForward fontSize="small" />
+          <ArrowForward />
         </Button>
       </CardContent>
     </Card>

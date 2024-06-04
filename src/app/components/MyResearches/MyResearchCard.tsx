@@ -25,6 +25,7 @@ const MyResearchesCard: React.FC<MyResearchCardProps> = ({ myResearch }) => {
 
   return (
     <Card
+      key={myResearch.id}
       sx={{
         border: 1,
         borderBottom: 10,

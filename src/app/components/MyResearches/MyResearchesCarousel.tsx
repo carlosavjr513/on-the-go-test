@@ -86,7 +86,7 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
         width: "100%",
       }}
     >
-      {getMaxWidth() < 1200 && (
+      {getMaxWidth() < 1200 && getMaxWidth() > 400 && (
         <Button
           disableRipple
           size="small"
@@ -178,7 +178,7 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
           </Card>
         </Box>
       </Box>
-      {getMaxWidth() < 1200 && (
+      {getMaxWidth() < 1200 && getMaxWidth() > 400 && (
         <Button
           disableRipple
           size="small"

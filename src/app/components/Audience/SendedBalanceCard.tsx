@@ -25,6 +25,7 @@ const SendedBalanceCard: React.FC<SendedBalanceCardProps> = ({ audience }) => {
         borderRadius: 1,
         borderColor: "#C9D1D6",
         boxShadow: "none",
+        m: 1,
       }}
     >
       <CardHeader avatar={<Email />} title="DISPAROS" sx={{ p: 0.5 }} />
@@ -35,7 +36,7 @@ const SendedBalanceCard: React.FC<SendedBalanceCardProps> = ({ audience }) => {
           flexDirection: "column",
           justifyContent: "space-between",
           py: 0,
-          px: 2,
+          px: 1,
         }}
       >
         <Box sx={{ marginBottom: 2 }}>

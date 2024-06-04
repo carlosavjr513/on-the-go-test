@@ -35,19 +35,18 @@ const DashboardCreditCard: React.FC<DashboardCreditCardProps> = ({
         borderBottom: 10,
         borderRadius: 1,
         textAlign: "center",
-        p: 2,
+        p: 1,
+        m: 1,
         borderColor: borderColor,
       }}
     >
       <CardContent>
         <Typography
-          variant="h6"
           sx={{ fontWeight: 700, fontSize: 38, color: fontColor }}
         >
           {value}
         </Typography>
         <Typography
-          variant="body2"
           sx={{
             display: "flex",
             flexDirection: "column",

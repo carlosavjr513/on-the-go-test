@@ -1,5 +1,5 @@
 import { Circle } from "@mui/icons-material";
-import { Grid, Typography } from "@mui/material";
+import { Box, Card, CardContent, Typography } from "@mui/material";
 import React from "react";
 import CircleIndicator from "./CircleIndicator";
 import FillingBar from "./FillingBar";
@@ -14,57 +14,73 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
   dataType,
 }) => {
   return (
-    <Grid
-      container
+    <Card
       sx={{
         color: "#8A9099",
         backgroundColor: "#242528",
-        p: 2,
         borderRadius: 1,
         display: "flex",
-        position: "relative",
+        p: 1,
+        m: 1,
+        height: "80%",
       }}
     >
-      <Grid
-        item
+      <CardContent
         sx={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          gap: 3,
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
         }}
       >
-        <Grid>
-          <Typography variant="h6" sx={{ fontWeight: 700 }}>
-            <span
-              style={{
-                fontWeight: 700,
-                color: "#ffffff",
-                fontSize: "30px",
-              }}
-            >
-              {dataType === "running"
-                ? `${data[0]}`
-                : dataType === "audience"
-                ? `${data.sended}`
-                : data}
-            </span>
-            {dataType === "scripting" ? <></> : <span>/</span>}
-            {dataType === "scripting" ? (
-              <></>
-            ) : (
+        <Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              width: "100%",
+              mb: 1,
+            }}
+          >
+            <Typography sx={{ fontWeight: 700 }}>
               <span
                 style={{
                   fontWeight: 700,
-                  fontSize: "18px",
+                  color: "#ffffff",
+                  fontSize: "30px",
                 }}
               >
-                {dataType === "running" ? `${data[1]}` : `${data.balance}`}
+                {dataType === "running"
+                  ? `${data[0]}`
+                  : dataType === "audience"
+                  ? `${data.sended}`
+                  : data}
               </span>
+              {dataType === "scripting" ? <></> : <span>/</span>}
+              {dataType === "scripting" ? (
+                <></>
+              ) : (
+                <span
+                  style={{
+                    fontSize: "18px",
+                  }}
+                >
+                  {dataType === "running" ? `${data[1]}` : `${data.balance}`}
+                </span>
+              )}
+            </Typography>
+            {dataType === "running" && (
+              <Circle
+                sx={{
+                  color: "#0AD2A5",
+                  fontSize: 8,
+                  alignSelf: "flex-start",
+                }}
+              />
             )}
-          </Typography>
+          </Box>
           <Typography
-            variant="body1"
             sx={{
               fontWeight: 500,
               display: "flex",
@@ -80,24 +96,15 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
               <span>PESQUISAS SEM ROTEIRIZAÇÃO</span>
             )}
           </Typography>
-        </Grid>
-        {dataType === "running" && <CircleIndicator count={data} />}
-        {dataType === "audience" && (
-          <FillingBar numerator={data.sended} denominator={data.balance} />
-        )}
-      </Grid>
-      {dataType === "running" && (
-        <Circle
-          sx={{
-            color: "#0AD2A5",
-            fontSize: 8,
-            position: "absolute",
-            top: 16,
-            right: 8,
-          }}
-        />
-      )}
-    </Grid>
+        </Box>
+        <Box sx={{ mt: 5, width: "100%" }}>
+          {dataType === "running" && <CircleIndicator count={data} />}
+          {dataType === "audience" && (
+            <FillingBar numerator={data.sended} denominator={data.balance} />
+          )}
+        </Box>
+      </CardContent>
+    </Card>
   );
 };
 
