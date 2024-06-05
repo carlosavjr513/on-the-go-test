@@ -4,12 +4,16 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import NotificationCard from "./NotificatonCard";
 
-interface NotificationTabs {
+interface NotificationData {
   comments: number;
   read: boolean;
   mensage: string;
   id: string;
   createdAt: string;
+}
+
+interface NotificationTabsProps {
+  notifications: NotificationData[];
 }
 
 interface TabPanelProps {
@@ -57,32 +61,10 @@ function a11yProps(index: number) {
   };
 }
 
-const NotificationTabs: React.FC = () => {
-  const { register, setValue, watch } = useForm<{
-    notifications: NotificationTabs[];
-  }>({
-    defaultValues: {
-      notifications: [],
-    },
-  });
-
+const NotificationTabs: React.FC<NotificationTabsProps> = ({
+  notifications,
+}) => {
   const [valueTab, setValueTab] = useState<number>(0);
-
-  useEffect(() => {
-    const fetchNotifications = async () => {
-      try {
-        const notificationsResponse = await axios.get("/api/notifications");
-        console.log("NOTIFICAÇÃO: ", notificationsResponse.data);
-        setValue("notifications", notificationsResponse.data);
-      } catch (error) {
-        console.error("Error fetching notifications: ", error);
-      }
-    };
-
-    fetchNotifications();
-  }, [setValue]);
-
-  const notifications = watch("notifications");
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValueTab(newValue);

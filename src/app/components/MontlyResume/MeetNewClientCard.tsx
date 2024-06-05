@@ -1,6 +1,11 @@
 import { Add } from "@mui/icons-material";
-// prettier-ignore
-import { Button, Card, CardActions, CardContent, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+} from "@mui/material";
 import React from "react";
 
 const MeetNewClientCard: React.FC = () => {
@@ -15,7 +20,7 @@ const MeetNewClientCard: React.FC = () => {
         alignItems: "center",
         px: 2,
         // height: "100%",
-        width: "80%"
+        width: "80%",
       }}
     >
       <CardContent sx={{ width: "100%" }}>

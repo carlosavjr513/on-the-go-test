@@ -3,8 +3,15 @@ import {
   ArrowForward,
   ArrowForwardIos,
 } from "@mui/icons-material";
-// prettier-ignore
-import { Box, Button, Card, CardContent, Typography, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import MyResearchCard from "./MyResearchCard";
 
@@ -82,7 +89,6 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        gap: 1,
         width: "100%",
       }}
     >
@@ -93,6 +99,7 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
           onClick={() => scroll(-100)}
           sx={{
             height: 64,
+            mr: 1,
             backgroundColor: scrollPosition === 0 ? "#C9D1D6" : "#000",
             "&:hover": {
               backgroundColor: scrollPosition === 0 ? "#C9D1D6" : "#000",
@@ -107,19 +114,21 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
       <Box
         ref={containerRef}
         sx={{
-          px: 7,
           py: 2,
           display: "flex",
           justifyContent: "center",
           overflow: "auto",
           width: `${getMaxWidth()}px`,
           whiteSpace: "nowrap",
-          gap: 3,
+          gap: 1,
           scrollbarWidth: "none",
         }}
       >
         {myResearches.map((myResearch, index) => (
-          <Box sx={{ display: "inline-block", p: 0, position: "relative" }}>
+          <Box
+            key={index}
+            sx={{ display: "inline-block", p: 0, position: "relative" }}
+          >
             <MyResearchCard key={index} myResearch={myResearch} />
           </Box>
         ))}
@@ -137,7 +146,7 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
               textAlign: "center",
               color: "#FFFFFF",
               width: isHovered ? "185px" : "200px",
-              height: "200px",
+              height: "190px",
               transition: "transform 0.2s ease-out",
               right: -200,
               top: 0,
@@ -185,6 +194,7 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
           onClick={() => scroll(100)}
           sx={{
             height: 64,
+            ml: 1,
             backgroundColor: !isScrollable ? "#C9D1D6" : "#000",
             "&:hover": {
               backgroundColor: !isScrollable ? "#C9D1D6" : "#000",

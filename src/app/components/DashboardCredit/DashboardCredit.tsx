@@ -11,11 +11,12 @@ const DashboardCredit: React.FC<DashboardCreditProps> = ({ credits }) => {
     <Grid
       container
       sx={{
-        p: 1,
         border: 1,
         borderRadius: 1,
         borderColor: "#C9D1D6",
         backgroundColor: "#ffffff",
+        height: "100%",
+        boxSizing: "border-box",
         m: 1,
       }}
     >
@@ -24,19 +25,18 @@ const DashboardCredit: React.FC<DashboardCreditProps> = ({ credits }) => {
           textAlign: "left",
           fontWeight: 400,
           fontSize: 12,
-          mb: 2,
+          mt: 1,
+          ml: 1,
         }}
       >
         CRÉDITOS PARA PAINEL
       </Box>
-      <Grid container sx={{ justifyContent: "center" }}>
+      <Grid container sx={{ justifyContent: "center", flexGrow: 1 }}>
         <Grid
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
+          direction="column"
+          justifyContent="space-between"
+          alignItems="center"
+          sx={{ height: "100%" }}
         >
           <Grid container sx={{ display: "flex", justifyContent: "center" }}>
             <Grid item xs={12} md={12} xl={4}>
@@ -56,14 +56,19 @@ const DashboardCredit: React.FC<DashboardCreditProps> = ({ credits }) => {
             </Grid>
           </Grid>
 
-          <Button
-            disableRipple
-            variant="outlined"
-            size="large"
-            sx={{ width: "100%", borderColor: "#C9D1D6", my: 2 }}
-          >
-            GERENCIAR CRÉDITOS
-          </Button>
+          <Grid item xs={12} md={12} xl={4} sx={{ textAlign: "center" }}>
+            <Button
+              disableRipple
+              variant="outlined"
+              size="large"
+              sx={{
+                width: "96.5%", 
+                borderColor: "#C9D1D6",
+              }}
+            >
+              GERENCIAR CRÉDITOS
+            </Button>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>

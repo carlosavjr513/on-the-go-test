@@ -47,7 +47,7 @@ const MyResearchesCard: React.FC<MyResearchCardProps> = ({ myResearch }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <CardContent sx={{ height: 150 }}>
+      <CardContent sx={{ height: "140px" }}>
         <Box sx={{ display: "flex", alignItems: "center", px: 1 }}>
           <Box
             sx={{

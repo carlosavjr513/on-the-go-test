@@ -19,10 +19,6 @@ const MontlyResume: React.FC<MonthlyResumeProps> = ({
   return (
     <Grid
       container
-      xs={12}
-      sm={12}
-      md={12}
-      xl={12}
       sx={{
         display: "flex",
         justifyContent: "space-evenly",
@@ -92,6 +88,8 @@ const MontlyResume: React.FC<MonthlyResumeProps> = ({
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          alignSelf: "flex-end",
+          mb: "20px",
         }}
       >
         <MeetNewClientCard />
