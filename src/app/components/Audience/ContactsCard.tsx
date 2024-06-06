@@ -38,7 +38,7 @@ const ContactsCard: React.FC<ContactsCardProps> = ({ contacts }) => {
       >
         <Box>
           <Typography sx={{ fontWeight: "700", fontSize: "38px" }}>
-            {contacts}
+            {contacts !== undefined && contacts !== null ? contacts : 0}
           </Typography>
           <Typography sx={{ fontWeight: "700", fontSize: "14px" }}>
             Contatos

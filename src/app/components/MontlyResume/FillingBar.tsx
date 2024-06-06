@@ -7,7 +7,16 @@ interface FillingBarProps {
 }
 
 const FillingBar: React.FC<FillingBarProps> = ({ numerator, denominator }) => {
-  const value = (numerator / denominator) * 100;
+  let value = 0;
+  if (
+    numerator !== null &&
+    denominator !== null &&
+    numerator !== undefined &&
+    denominator !== undefined &&
+    denominator !== 0
+  )
+    value = (numerator / denominator) * 100;
+
   return (
     <LinearProgress
       variant="determinate"

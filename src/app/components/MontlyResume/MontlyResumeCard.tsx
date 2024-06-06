@@ -54,7 +54,7 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
                 {dataType === "running"
                   ? `${data[0]}`
                   : dataType === "audience"
-                  ? `${data.sended}`
+                  ? `${data.sended !== undefined ? data.sended : 0}`
                   : data}
               </span>
               {dataType === "scripting" ? <></> : <span>/</span>}
@@ -66,7 +66,7 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
                     fontSize: "18px",
                   }}
                 >
-                  {dataType === "running" ? `${data[1]}` : `${data.balance}`}
+                  {dataType === "running" ? `${data[1]}` : `${data.balance !== undefined ? data.balance : 0}`}
                 </span>
               )}
             </Typography>
@@ -75,7 +75,7 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
                 sx={{
                   color: "#0AD2A5",
                   fontSize: 8,
-                  alignSelf: "flex-start",
+                  alignSelf: "flex-start",                  
                 }}
               />
             )}

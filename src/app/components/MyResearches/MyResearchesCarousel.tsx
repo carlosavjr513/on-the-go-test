@@ -114,7 +114,7 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
       <Box
         ref={containerRef}
         sx={{
-          py: 2,          
+          py: 2,
           display: "flex",
           justifyContent: "center",
           overflow: "auto",
@@ -122,6 +122,7 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
           whiteSpace: "nowrap",
           gap: 1,
           scrollbarWidth: "none",
+          minHeight: "180px",
         }}
       >
         {myResearches.map((myResearch, index) => (

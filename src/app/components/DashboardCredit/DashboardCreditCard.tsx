@@ -44,7 +44,7 @@ const DashboardCreditCard: React.FC<DashboardCreditCardProps> = ({
         <Typography
           sx={{ fontWeight: 700, fontSize: 38, color: fontColor }}
         >
-          {value}
+          {value !== undefined && value !== null ? value : 0}
         </Typography>
         <Typography
           sx={{

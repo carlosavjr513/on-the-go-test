@@ -43,9 +43,9 @@ const SendedBalanceCard: React.FC<SendedBalanceCardProps> = ({ audience }) => {
       >
         <Box sx={{ marginBottom: 2 }}>
           <Typography sx={{ fontWeight: "700", fontSize: "38px" }}>
-            {audience.sended}
+            {audience.sended !== undefined && audience.sended !== null ? audience.sended : 0}
             <span style={{ fontSize: 18, color: "#8A9099" }}>
-              /{audience.balance}
+              /{audience.balance !== undefined && audience.balance !== null ? audience.balance : 0}
             </span>
           </Typography>
           <Typography sx={{ fontWeight: "700", fontSize: "14px" }}>
@@ -67,7 +67,7 @@ const SendedBalanceCard: React.FC<SendedBalanceCardProps> = ({ audience }) => {
               }
             }
           }}
-        >
+          >
           IR PARA CAMPANHAS
         </Button>
       </CardContent>
