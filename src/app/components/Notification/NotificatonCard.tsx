@@ -85,10 +85,6 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
             sx={{ fontSize: "12px", fontWeight: 500, color: "#8A9099" }}
           >
             {parseBoldText(notification.mensage)}
-            {/* Seu time está colaborando em{" "}
-            <span style={{ fontWeight: 700, color: "#000000" }}>
-              ACME Corp: Promoção Verão da Sorte
-            </span> */}
           </Typography>
           <Button
             disableRipple
