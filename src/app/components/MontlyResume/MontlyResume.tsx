@@ -22,7 +22,7 @@ const MontlyResume: React.FC<MonthlyResumeProps> = ({
       sx={{
         display: "flex",
         justifyContent: "space-evenly",
-        pt: 1,
+        pt: 0.5,
         backgroundColor: "#000000",
         color: "#ffffff",
         width: "100%",
@@ -34,30 +34,15 @@ const MontlyResume: React.FC<MonthlyResumeProps> = ({
         sx={{
           display: "flex",
           flexDirection: "column",
-          gap: 2,
         }}
       >
-        <Grid
-          item
-          sx={{
-            textAlign: "left",
-            px: 5,
-          }}
-        >
+        <Grid item sx={{ textAlign: "left", px: 1 }}>
           <Typography sx={{ fontSize: 10, fontWeight: 400 }}>
             RESUMO MENSAL
           </Typography>
-          <Typography variant="h5" sx={{ fontSize: 22, fontWeight: 700 }}>
-            {date}
-          </Typography>
+          <Typography sx={{ fontSize: 22, fontWeight: 700 }}>{date}</Typography>
         </Grid>
-        <Grid
-          item
-          sx={{
-            display: "flex",
-            px: 5,
-          }}
-        >
+        <Grid item>
           <Grid
             container
             sx={{
@@ -90,6 +75,7 @@ const MontlyResume: React.FC<MonthlyResumeProps> = ({
           alignItems: "center",
           alignSelf: "flex-end",
           mb: "20px",
+          px: 1,
         }}
       >
         <MeetNewClientCard />

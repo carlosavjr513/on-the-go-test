@@ -1,14 +1,15 @@
-import React from "react";
+import Email from "@mui/icons-material/Email";
 import {
+  Box,
+  Button,
   Card,
+  CardContent,
   CardHeader,
   Divider,
-  CardContent,
-  Box,
   Typography,
-  Button,
+  useTheme
 } from "@mui/material";
-import Email from "@mui/icons-material/Email";
+import React from "react";
 
 type SendedBalanceCardProps = {
   audience: {
@@ -18,6 +19,8 @@ type SendedBalanceCardProps = {
 };
 
 const SendedBalanceCard: React.FC<SendedBalanceCardProps> = ({ audience }) => {
+  const theme = useTheme();
+
   return (
     <Card
       sx={{
@@ -25,7 +28,6 @@ const SendedBalanceCard: React.FC<SendedBalanceCardProps> = ({ audience }) => {
         borderRadius: 1,
         borderColor: "#C9D1D6",
         boxShadow: "none",
-        m: 1,
       }}
     >
       <CardHeader avatar={<Email />} title="DISPAROS" sx={{ p: 0.5 }} />
@@ -56,6 +58,14 @@ const SendedBalanceCard: React.FC<SendedBalanceCardProps> = ({ audience }) => {
           size="large"
           sx={{
             borderColor: "#C9D1D6",
+            [theme.breakpoints.not('xl')]: {
+              backgroundColor: "#000",
+              color: "#fff",
+              "&:hover": {
+                backgroundColor: "#000c",
+                color: "#fffc"
+              }
+            }
           }}
         >
           IR PARA CAMPANHAS

@@ -25,7 +25,7 @@ const Navbar = () => {
       position="static"
       sx={{
         backgroundColor: "#000000",
-        p: "8px 12px 8px 26px",
+        // p: "8px 12px 8px 26px",
         borderBottom: "1px solid #242528",
       }}
     >

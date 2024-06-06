@@ -22,8 +22,7 @@ const ContactsCard: React.FC<ContactsCardProps> = ({ contacts }) => {
         border: 1,
         borderRadius: 1,
         borderColor: "#C9D1D6",
-        boxShadow: "none",
-        m: 1,
+        boxShadow: "none",        
       }}
     >
       <CardHeader avatar={<Groups />} title="AUDIÊNCIA" sx={{ p: 0.5 }} />

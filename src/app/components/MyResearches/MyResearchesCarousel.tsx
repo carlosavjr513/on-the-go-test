@@ -114,7 +114,7 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
       <Box
         ref={containerRef}
         sx={{
-          py: 2,
+          py: 2,          
           display: "flex",
           justifyContent: "center",
           overflow: "auto",

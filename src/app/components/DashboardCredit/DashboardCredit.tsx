@@ -16,8 +16,6 @@ const DashboardCredit: React.FC<DashboardCreditProps> = ({ credits }) => {
         borderColor: "#C9D1D6",
         backgroundColor: "#ffffff",
         height: "100%",
-        boxSizing: "border-box",
-        m: 1,
       }}
     >
       <Box
@@ -56,13 +54,19 @@ const DashboardCredit: React.FC<DashboardCreditProps> = ({ credits }) => {
             </Grid>
           </Grid>
 
-          <Grid item xs={12} md={12} xl={4} sx={{ textAlign: "center" }}>
+          <Grid
+            item
+            xs={12}
+            md={12}
+            xl={4}
+            sx={{ textAlign: "center", pb: 2 }}
+          >
             <Button
               disableRipple
               variant="outlined"
               size="large"
               sx={{
-                width: "96.5%", 
+                width: "96.5%",
                 borderColor: "#C9D1D6",
               }}
             >

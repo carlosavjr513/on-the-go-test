@@ -18,9 +18,8 @@ const MeetNewClientCard: React.FC = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        px: 2,
-        // height: "100%",
-        width: "80%",
+        px: 2,        
+        width: "100%",
       }}
     >
       <CardContent sx={{ width: "100%" }}>
@@ -53,7 +52,7 @@ const MeetNewClientCard: React.FC = () => {
           variant="contained"
           sx={{
             backgroundColor: "#000000",
-            width: "90%",
+            width: "100%",
             overflow: "hidden",
             display: "flex",
             alignItems: "center",

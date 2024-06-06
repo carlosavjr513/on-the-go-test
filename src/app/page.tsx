@@ -107,7 +107,6 @@ export default function Home() {
 
   return (
     <Grid container>
-      {/* Div 1 */}
       <Grid
         item
         xs={12}
@@ -129,33 +128,41 @@ export default function Home() {
           />
         </Box>
 
-        {/* Div 2 */}
-        <Grid container sx={{ flex: "1 0 auto" }}>
+        <Grid container>
           <Grid item xs={12} md={9} xl={12}>
             <Box>
               <MyResearchesCarousel myResearches={myResearches} />
             </Box>
-
             <Box>
-              <Grid container spacing={1}>
-                <Grid item xs={12} md={6} xl={6}>
+              <Grid
+                container
+                sx={{
+                  p: 1,
+                  gap: 1,
+                  justifyContent: "center",
+                }}
+              >
+                <Grid item xs={12} md={6}>
                   <DashboardCredit credits={credits} />
                 </Grid>
-                <Grid item xs={12} md={6} xl={6}>
-                  <Grid container>
-                    <Grid item xs={12}>
-                      <ContactsCard contacts={audience.contacts} />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <SendedBalanceCard audience={audience} />
-                    </Grid>
-                  </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  md={5}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    gap: 1,
+                  }}
+                >
+                  <ContactsCard contacts={audience.contacts} />
+                  <SendedBalanceCard audience={audience} />
                 </Grid>
               </Grid>
             </Box>
           </Grid>
 
-          {/* Div B */}
           <Grid
             item
             md={3}
@@ -168,7 +175,6 @@ export default function Home() {
         </Grid>
       </Grid>
 
-      {/* Div 3 */}
       <Grid
         item
         md={3}
