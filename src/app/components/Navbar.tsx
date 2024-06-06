@@ -5,6 +5,7 @@ import NotificationIcon from "@mui/icons-material/Notifications";
 import {
   AppBar,
   Backdrop,
+  Badge,
   Box,
   Divider,
   Drawer,
@@ -16,16 +17,31 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import NotificationTabs from "./Notification/NotificationTabs";
 
 type MenuItemType = string;
 
-interface NavbarProps {
-  menuItems: MenuItemType[];
+interface NotificationData {
+  comments: number;
+  read: boolean;
+  mensage: string;
+  id: string;
+  createdAt: string;
 }
 
-const DesktopNavbar: React.FC<NavbarProps> = ({ menuItems }) => {
+interface NavbarProps {
+  menuItems: MenuItemType[];
+  notifications: NotificationData[];
+}
+
+const DesktopNavbar: React.FC<Omit<NavbarProps, "notifications">> = ({
+  menuItems,
+}) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [isNotificationTabsOpen, setIsNotificationTabsOpen] = useState(false);
 
   const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget as HTMLElement);
@@ -128,15 +144,33 @@ const DesktopNavbar: React.FC<NavbarProps> = ({ menuItems }) => {
   );
 };
 
-const MobileNavbar: React.FC<NavbarProps> = ({ menuItems }) => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+const MobileNavbar: React.FC<NavbarProps> = ({ menuItems, notifications }) => {
+  const [isMenuDrawer, setisMenuDrawer] = useState(false);
+  const [isNotificationDrawer, setisNotificationDrawer] = useState(false);
 
-  const handleDrawerOpen = () => {
-    setIsDrawerOpen(true);
+  const hasUnreadNotification = notifications.some(
+    (notification) => notification.read
+  );
+
+  const handleMenuDrawerOpen = () => {
+    setisMenuDrawer(true);
   };
 
-  const handleDrawerClose = () => {
-    setIsDrawerOpen(false);
+  const handleMenuDrawerClose = () => {
+    setisMenuDrawer(false);
+  };
+
+  const handleNotificationDrawerOpen = () => {
+    setisNotificationDrawer(true);
+  };
+
+  const handleNotificationDrawerClose = () => {
+    setisNotificationDrawer(false);
+  };
+
+  const handleMenuCloseNotificationOpen = () => {
+    setisMenuDrawer(false);
+    setisNotificationDrawer(true);
   };
 
   return (
@@ -160,11 +194,15 @@ const MobileNavbar: React.FC<NavbarProps> = ({ menuItems }) => {
           <IconButton
             aria-label="openMenu"
             sx={{ color: "#ffffff" }}
-            onClick={handleDrawerOpen}
+            onClick={handleMenuDrawerOpen}
           >
             <MenuIcon />
           </IconButton>
-          <Drawer anchor="top" open={isDrawerOpen} onClose={handleDrawerClose}>
+          <Drawer
+            anchor="top"
+            open={isMenuDrawer}
+            onClose={handleMenuDrawerClose}
+          >
             <Box
               sx={{
                 backgroundColor: "#ffffff",
@@ -188,7 +226,7 @@ const MobileNavbar: React.FC<NavbarProps> = ({ menuItems }) => {
                   <IconButton
                     aria-label="closeMenu"
                     sx={{ color: "#ffffff" }}
-                    onClick={handleDrawerClose}
+                    onClick={handleMenuDrawerClose}
                   >
                     <ClearIcon />
                   </IconButton>
@@ -197,8 +235,15 @@ const MobileNavbar: React.FC<NavbarProps> = ({ menuItems }) => {
                   <IconButton
                     aria-label="notifications"
                     sx={{ color: "#ffffff" }}
+                    onClick={handleMenuCloseNotificationOpen}
                   >
-                    <NotificationIcon />
+                    <Badge
+                      color="warning"
+                      variant="dot"
+                      invisible={hasUnreadNotification}
+                    >
+                      <NotificationIcon />
+                    </Badge>
                   </IconButton>
                 </Box>
               </Toolbar>
@@ -225,7 +270,7 @@ const MobileNavbar: React.FC<NavbarProps> = ({ menuItems }) => {
               {menuItems.map((item) => (
                 <React.Fragment key={item}>
                   <MenuItem
-                    onClick={handleDrawerClose}
+                    onClick={handleMenuDrawerClose}
                     sx={{ color: "#8A9099", justifyContent: "center" }}
                   >
                     {item}
@@ -247,7 +292,7 @@ const MobileNavbar: React.FC<NavbarProps> = ({ menuItems }) => {
                   adriano.lima@acmecorp.com.br
                 </Typography>
                 <Divider sx={{ width: "45%", pt: 3 }} />
-                <Box onClick={handleDrawerClose}>
+                <Box onClick={handleMenuDrawerClose}>
                   <Typography sx={{ fontWeight: 400, pt: 2 }}>
                     Logout
                   </Typography>
@@ -256,14 +301,37 @@ const MobileNavbar: React.FC<NavbarProps> = ({ menuItems }) => {
             </Box>
           </Drawer>
           <Backdrop
-            open={isDrawerOpen}
+            open={isMenuDrawer}
             sx={{ zIndex: 100, backgroundColor: "rgba(0, 0, 0, 0.5)" }}
           />
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <IconButton aria-label="notifications" sx={{ color: "#ffffff" }}>
-            <NotificationIcon />
+          <IconButton
+            aria-label="notifications"
+            sx={{ color: "#ffffff" }}
+            onClick={handleNotificationDrawerOpen}
+          >
+            <Badge
+              color="warning"
+              variant="dot"
+              invisible={hasUnreadNotification}
+            >
+              <NotificationIcon />
+            </Badge>
           </IconButton>
+          <Drawer
+            anchor="top"
+            open={isNotificationDrawer}
+            onClose={handleNotificationDrawerClose}
+          >
+            <Box onClick={handleNotificationDrawerClose}>
+              <NotificationTabs notifications={notifications} />
+            </Box>
+          </Drawer>
+          <Backdrop
+            open={isNotificationDrawer}
+            sx={{ zIndex: 50, backgroundColor: "rgba(0, 0, 0, 0.5)" }}
+          />
         </Box>
       </Toolbar>
     </AppBar>
@@ -281,8 +349,36 @@ const Navbar = () => {
     "Configurações",
   ];
 
+  const {
+    register: notificationsRegister,
+    setValue: notificationsSetValue,
+    watch: notificationsWatch,
+  } = useForm<{
+    notifications: NotificationData[];
+  }>({
+    defaultValues: {
+      notifications: [],
+    },
+  });
+
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const notificationsResponse = await axios.get("/api/notifications");
+        console.log("NOTIFICAÇÃO: ", notificationsResponse.data);
+        notificationsSetValue("notifications", notificationsResponse.data);
+      } catch (error) {
+        console.error("Error fetching notifications: ", error);
+      }
+    };
+
+    fetchNotifications();
+  }, [notificationsSetValue]);
+
+  const notifications = notificationsWatch("notifications");
+
   return showMobileBar ? (
-    <MobileNavbar menuItems={menuItems} />
+    <MobileNavbar menuItems={menuItems} notifications={notifications} />
   ) : (
     <DesktopNavbar menuItems={menuItems} />
   );
