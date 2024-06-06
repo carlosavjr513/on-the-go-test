@@ -365,7 +365,6 @@ const Navbar = () => {
     const fetchNotifications = async () => {
       try {
         const notificationsResponse = await axios.get("/api/notifications");
-        console.log("NOTIFICAÇÃO: ", notificationsResponse.data);
         notificationsSetValue("notifications", notificationsResponse.data);
       } catch (error) {
         console.error("Error fetching notifications: ", error);

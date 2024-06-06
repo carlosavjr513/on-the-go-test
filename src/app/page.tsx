@@ -64,7 +64,6 @@ export default function Home() {
         const homeResponse = await axios.get(
           "/api/home/7a581b0e16b559ff9a9957"
         );
-        console.log("HOME: ", homeResponse.data);
 
         const formattedDate = formatDate(homeResponse.data.createAt);
         const running = splitRunning(homeResponse.data.researches.running);
@@ -80,7 +79,7 @@ export default function Home() {
         setValue("audience", audience);
         setValue("credits", credits);
       } catch (err) {
-        console.log("Error fetching data: ", err);
+        console.error("Error fetching data: ", err);
       }
     };
 
@@ -91,7 +90,6 @@ export default function Home() {
     const fetchNotifications = async () => {
       try {
         const notificationsResponse = await axios.get("/api/notifications");
-        console.log("NOTIFICAÇÃO: ", notificationsResponse.data);
         notificationsSetValue("notifications", notificationsResponse.data);
       } catch (error) {
         console.error("Error fetching notifications: ", error);
