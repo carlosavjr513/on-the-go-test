@@ -17,9 +17,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
 import NotificationTabs from "./Notification/NotificationTabs";
 
 type MenuItemType = string;
@@ -338,7 +336,9 @@ const MobileNavbar: React.FC<NavbarProps> = ({ menuItems, notifications }) => {
   );
 };
 
-const Navbar = () => {
+const Navbar: React.FC<{ notifications: NotificationData[] }> = ({
+  notifications,
+}) => {
   const showMobileBar = useMediaQuery("(max-width:985px)");
 
   const menuItems = [
@@ -348,33 +348,6 @@ const Navbar = () => {
     "Equipe",
     "Configurações",
   ];
-
-  const {
-    register: notificationsRegister,
-    setValue: notificationsSetValue,
-    watch: notificationsWatch,
-  } = useForm<{
-    notifications: NotificationData[];
-  }>({
-    defaultValues: {
-      notifications: [],
-    },
-  });
-
-  useEffect(() => {
-    const fetchNotifications = async () => {
-      try {
-        const notificationsResponse = await axios.get("/api/notifications");
-        notificationsSetValue("notifications", notificationsResponse.data);
-      } catch (error) {
-        console.error("Error fetching notifications: ", error);
-      }
-    };
-
-    fetchNotifications();
-  }, [notificationsSetValue]);
-
-  const notifications = notificationsWatch("notifications");
 
   return showMobileBar ? (
     <MobileNavbar menuItems={menuItems} notifications={notifications} />

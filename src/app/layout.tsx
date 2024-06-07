@@ -11,7 +11,6 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       <head />
       <body>
         <ThemeProvider theme={theme}>
-          <Navbar />
           {children}
         </ThemeProvider>
       </body>
