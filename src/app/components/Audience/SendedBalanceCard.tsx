@@ -1,3 +1,4 @@
+import { SendedBalanceCardProps } from "@/types/types";
 import Email from "@mui/icons-material/Email";
 import {
   Box,
@@ -7,16 +8,9 @@ import {
   CardHeader,
   Divider,
   Typography,
-  useTheme
+  useTheme,
 } from "@mui/material";
 import React from "react";
-
-type SendedBalanceCardProps = {
-  audience: {
-    sended: number;
-    balance: number;
-  };
-};
 
 const SendedBalanceCard: React.FC<SendedBalanceCardProps> = ({ audience }) => {
   const theme = useTheme();
@@ -43,9 +37,14 @@ const SendedBalanceCard: React.FC<SendedBalanceCardProps> = ({ audience }) => {
       >
         <Box sx={{ marginBottom: 2 }}>
           <Typography sx={{ fontWeight: "700", fontSize: "38px" }}>
-            {audience.sended !== undefined && audience.sended !== null ? audience.sended : 0}
+            {audience.sended !== undefined && audience.sended !== null
+              ? audience.sended
+              : 0}
             <span style={{ fontSize: 18, color: "#8A9099" }}>
-              /{audience.balance !== undefined && audience.balance !== null ? audience.balance : 0}
+              /
+              {audience.balance !== undefined && audience.balance !== null
+                ? audience.balance
+                : 0}
             </span>
           </Typography>
           <Typography sx={{ fontWeight: "700", fontSize: "14px" }}>
@@ -58,16 +57,16 @@ const SendedBalanceCard: React.FC<SendedBalanceCardProps> = ({ audience }) => {
           size="large"
           sx={{
             borderColor: "#C9D1D6",
-            [theme.breakpoints.not('xl')]: {
+            [theme.breakpoints.not("xl")]: {
               backgroundColor: "#000",
               color: "#fff",
               "&:hover": {
                 backgroundColor: "#000c",
-                color: "#fffc"
-              }
-            }
+                color: "#fffc",
+              },
+            },
           }}
-          >
+        >
           IR PARA CAMPANHAS
         </Button>
       </CardContent>

@@ -1,10 +1,7 @@
+import { DashboardCreditProps } from "@/types/types";
 import { Box, Button, Grid } from "@mui/material";
 import React from "react";
 import DashboardCreditCard from "./DashboardCreditCard";
-
-type DashboardCreditProps = {
-  credits: { [key: string]: number };
-};
 
 const DashboardCredit: React.FC<DashboardCreditProps> = ({ credits }) => {
   return (
@@ -54,13 +51,7 @@ const DashboardCredit: React.FC<DashboardCreditProps> = ({ credits }) => {
             </Grid>
           </Grid>
 
-          <Grid
-            item
-            xs={12}
-            md={12}
-            xl={4}
-            sx={{ textAlign: "center", pb: 2 }}
-          >
+          <Grid item xs={12} md={12} xl={4} sx={{ textAlign: "center", pb: 2 }}>
             <Button
               disableRipple
               variant="outlined"

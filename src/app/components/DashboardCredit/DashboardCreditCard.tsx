@@ -1,10 +1,6 @@
+import { DashboardCreditCardProps } from "@/types/types";
 import { Card, CardContent, Typography } from "@mui/material";
 import React from "react";
-
-type DashboardCreditCardProps = {
-  title: string;
-  value: any;
-};
 
 const DashboardCreditCard: React.FC<DashboardCreditCardProps> = ({
   title,
@@ -41,9 +37,7 @@ const DashboardCreditCard: React.FC<DashboardCreditCardProps> = ({
       }}
     >
       <CardContent>
-        <Typography
-          sx={{ fontWeight: 700, fontSize: 38, color: fontColor }}
-        >
+        <Typography sx={{ fontWeight: 700, fontSize: 38, color: fontColor }}>
           {value !== undefined && value !== null ? value : 0}
         </Typography>
         <Typography

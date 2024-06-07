@@ -1,9 +1,6 @@
+import { CircleIndicatorProps } from "@/types/types";
 import { Box } from "@mui/material";
 import React from "react";
-
-interface CircleIndicatorProps {
-  count: [number, number];
-}
 
 const CircleIndicator: React.FC<CircleIndicatorProps> = ({ count }) => {
   const [filledCount, totalCount] = count;

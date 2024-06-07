@@ -1,26 +1,7 @@
 import { Box, Tab, Tabs, Typography } from "@mui/material";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import React, { useState } from "react";
 import NotificationCard from "./NotificatonCard";
-
-interface NotificationData {
-  comments: number;
-  read: boolean;
-  mensage: string;
-  id: string;
-  createdAt: string;
-}
-
-interface NotificationTabsProps {
-  notifications: NotificationData[];
-}
-
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
+import { NotificationTabsProps, TabPanelProps } from "@/types/types";
 
 const TabPanel: React.FC<TabPanelProps> = (props) => {
   const { children, value, index, ...other } = props;

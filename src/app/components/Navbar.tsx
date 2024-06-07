@@ -19,21 +19,9 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import NotificationTabs from "./Notification/NotificationTabs";
+import { NavbarProps, NotificationData } from "@/types/types";
 
-type MenuItemType = string;
 
-interface NotificationData {
-  comments: number;
-  read: boolean;
-  mensage: string;
-  id: string;
-  createdAt: string;
-}
-
-interface NavbarProps {
-  menuItems: MenuItemType[];
-  notifications: NotificationData[];
-}
 
 const DesktopNavbar: React.FC<Omit<NavbarProps, "notifications">> = ({
   menuItems,

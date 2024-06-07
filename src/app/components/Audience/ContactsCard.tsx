@@ -1,19 +1,16 @@
-import React from "react";
+import { ContactsCardProps } from "@/types/types";
+import ArrowForward from "@mui/icons-material/ArrowForward";
+import Groups from "@mui/icons-material/Groups";
 import {
+  Box,
+  Button,
   Card,
+  CardContent,
   CardHeader,
   Divider,
-  CardContent,
-  Box,
   Typography,
-  Button,
 } from "@mui/material";
-import Groups from "@mui/icons-material/Groups";
-import ArrowForward from "@mui/icons-material/ArrowForward";
-
-type ContactsCardProps = {
-  contacts: number;
-};
+import React from "react";
 
 const ContactsCard: React.FC<ContactsCardProps> = ({ contacts }) => {
   return (
@@ -22,7 +19,7 @@ const ContactsCard: React.FC<ContactsCardProps> = ({ contacts }) => {
         border: 1,
         borderRadius: 1,
         borderColor: "#C9D1D6",
-        boxShadow: "none",        
+        boxShadow: "none",
       }}
     >
       <CardHeader avatar={<Groups />} title="AUDIÊNCIA" sx={{ p: 0.5 }} />

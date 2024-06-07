@@ -1,14 +1,8 @@
+import { MonthlyResumeProps } from "@/types/types";
 import { Grid, Typography } from "@mui/material";
 import React from "react";
 import MeetNewClientCard from "./MeetNewClientCard";
 import MontlyResumeCard from "./MontlyResumeCard";
-
-interface MonthlyResumeProps {
-  date: string;
-  running: [number, number];
-  scripting: number;
-  audience: any;
-}
 
 const MontlyResume: React.FC<MonthlyResumeProps> = ({
   date,

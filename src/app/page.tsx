@@ -11,29 +11,7 @@ import MyResearchesCarousel from "./components/MyResearches/MyResearchesCarousel
 import NotificationTabs from "./components/Notification/NotificationTabs";
 import { formatDate, splitRunning } from "./utils/functions";
 import Navbar from "./components/Navbar";
-
-interface MyResearch {
-  name: string;
-  id: number;
-  status: string;
-}
-
-interface HomeData {
-  date: string;
-  running: [number, number];
-  scripting: number;
-  audience: any;
-  credits: { [key: string]: number };
-  myResearches: MyResearch[];
-}
-
-interface NotificationData {
-  comments: number;
-  read: boolean;
-  mensage: string;
-  id: string;
-  createdAt: string;
-}
+import { HomeData, NotificationData } from "@/types/types";
 
 export default function Home() {
   const { register, setValue, watch } = useForm<HomeData>({

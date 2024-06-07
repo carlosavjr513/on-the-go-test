@@ -1,16 +1,9 @@
+import { NotificationCardProps } from "@/types/types";
 import ArrowForward from "@mui/icons-material/ArrowForward";
 import Circle from "@mui/icons-material/Circle";
 import CommentIcon from "@mui/icons-material/Comment";
 import { Box, Button, Card, CardContent, Typography } from "@mui/material";
 import React from "react";
-
-interface NotificationCardProps {
-  notification: {
-    comments: number;
-    read: boolean;
-    mensage: string;
-  };
-}
 
 const parseBoldText = (text: string) => {
   const parts = text.split(/<b>(.*?)<\/b>/g);

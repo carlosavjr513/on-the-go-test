@@ -1,3 +1,4 @@
+import { MyResearchesCarouselProps } from "@/types/types";
 import {
   ArrowBackIos,
   ArrowForward,
@@ -14,16 +15,6 @@ import {
 } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import MyResearchCard from "./MyResearchCard";
-
-type MyResearch = {
-  name: string;
-  id: number;
-  status: string;
-};
-
-interface MyResearchesCarouselProps {
-  myResearches: MyResearch[];
-}
 
 const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
   myResearches,

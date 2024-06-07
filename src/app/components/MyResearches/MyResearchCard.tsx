@@ -1,16 +1,7 @@
+import { MyResearchCardProps } from "@/types/types";
 import { Circle } from "@mui/icons-material";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import React, { useState } from "react";
-
-interface MyResearch {
-  name: string;
-  id: number;
-  status: string;
-}
-
-type MyResearchCardProps = {
-  myResearch: MyResearch;
-};
 
 const MyResearchesCard: React.FC<MyResearchCardProps> = ({ myResearch }) => {
   const [isHovered, setIsHovered] = useState(false);

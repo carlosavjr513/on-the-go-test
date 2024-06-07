@@ -1,10 +1,6 @@
+import { FillingBarProps } from "@/types/types";
 import LinearProgress from "@mui/material/LinearProgress";
 import React from "react";
-
-interface FillingBarProps {
-  numerator: number;
-  denominator: number;
-}
 
 const FillingBar: React.FC<FillingBarProps> = ({ numerator, denominator }) => {
   let value = 0;

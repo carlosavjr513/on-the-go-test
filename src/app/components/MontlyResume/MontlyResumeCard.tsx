@@ -1,13 +1,9 @@
+import { MontlyResumeCardProps } from "@/types/types";
 import { Circle } from "@mui/icons-material";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import React from "react";
 import CircleIndicator from "./CircleIndicator";
 import FillingBar from "./FillingBar";
-
-interface MontlyResumeCardProps {
-  data: any;
-  dataType: string;
-}
 
 const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
   data,
@@ -66,7 +62,9 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
                     fontSize: "18px",
                   }}
                 >
-                  {dataType === "running" ? `${data[1]}` : `${data.balance !== undefined ? data.balance : 0}`}
+                  {dataType === "running"
+                    ? `${data[1]}`
+                    : `${data.balance !== undefined ? data.balance : 0}`}
                 </span>
               )}
             </Typography>
@@ -75,7 +73,7 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
                 sx={{
                   color: "#0AD2A5",
                   fontSize: 8,
-                  alignSelf: "flex-start",                  
+                  alignSelf: "flex-start",
                 }}
               />
             )}
