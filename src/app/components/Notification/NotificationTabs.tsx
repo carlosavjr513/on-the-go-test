@@ -1,7 +1,16 @@
+import { formatTimelineDate } from "@/app/utils/functions";
+import { NotificationTabsProps, TabPanelProps } from "@/types/types";
+import {
+  Timeline,
+  TimelineConnector,
+  TimelineContent,
+  TimelineItem,
+  TimelineSeparator,
+  timelineItemClasses,
+} from "@mui/lab";
 import { Box, Tab, Tabs, Typography } from "@mui/material";
 import React, { useState } from "react";
-import NotificationCard from "./NotificatonCard";
-import { NotificationTabsProps, TabPanelProps } from "@/types/types";
+import NotificationCard from "./NotificationCard";
 
 const TabPanel: React.FC<TabPanelProps> = (props) => {
   const { children, value, index, ...other } = props;
@@ -51,6 +60,8 @@ const NotificationTabs: React.FC<NotificationTabsProps> = ({
     setValueTab(newValue);
   };
 
+  let lastDate: string | null = null;
+
   return (
     <Box sx={{ maxWidth: "100%", overflow: "hidden" }}>
       <Box
@@ -95,12 +106,51 @@ const NotificationTabs: React.FC<NotificationTabsProps> = ({
           <Tab label="Todas" {...a11yProps(0)} />
         </Tabs>
         <TabPanel value={valueTab} index={0}>
-          {notifications.map((notification) => (
-            <NotificationCard
-              key={notification.id}
-              notification={notification}
-            />
-          ))}
+          <Timeline
+            sx={{
+              [`& .${timelineItemClasses.root}:before`]: {
+                flex: 0,
+                p: 0,
+              },
+            }}
+          >
+            {notifications.map((notification, index) => {
+              const notificationDate = formatTimelineDate(
+                notification.createAt
+              );
+              const showDate = notificationDate !== lastDate;
+              if (showDate) {
+                lastDate = notificationDate;
+              }
+
+              return (
+                <Box key={notification.id}>
+                  {showDate && (
+                    <TimelineItem sx={{ ml: -2, mb: -5, mt: 1 }}>
+                      <TimelineSeparator>
+                        <Typography
+                          sx={{ fontWeight: 400, textAlign: "center" }}
+                        >
+                          {formatTimelineDate(notification.createAt)}
+                        </Typography>
+                      </TimelineSeparator>
+                    </TimelineItem>
+                  )}
+                  <TimelineItem>
+                    <TimelineSeparator>
+                      <TimelineConnector />
+                    </TimelineSeparator>
+                    <TimelineContent sx={{ ml: -6 }}>
+                      <NotificationCard
+                        key={notification.id}
+                        notification={notification}
+                      />
+                    </TimelineContent>
+                  </TimelineItem>
+                </Box>
+              );
+            })}
+          </Timeline>
         </TabPanel>
       </Box>
     </Box>

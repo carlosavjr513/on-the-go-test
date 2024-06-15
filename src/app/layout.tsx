@@ -1,9 +1,13 @@
 "use client";
-import "./styles/globals.css";
-import { ReactNode } from "react";
 import { ThemeProvider } from "@emotion/react";
-import theme from "./styles/theme";
+import { ReactNode } from "react";
 import Navbar from "./components/Navbar";
+import {
+  NotificationsProvider,
+  useNotifications,
+} from "./context/NotificationContext";
+import "./styles/globals.css";
+import theme from "./styles/theme";
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
@@ -11,10 +15,26 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       <head />
       <body>
         <ThemeProvider theme={theme}>
-          {children}
+          <NotificationsProvider>
+            <LayoutContent>
+              {children}
+            </LayoutContent>
+          </NotificationsProvider>
         </ThemeProvider>
       </body>
     </html>
+  );
+};
+
+const LayoutContent = ({ children }: { children: ReactNode }) => {
+  const { notificationsForm } = useNotifications();
+  const notifications = notificationsForm.watch('notifications');
+
+  return (
+    <>
+      <Navbar notifications={notifications} />
+      {children}
+    </>
   );
 };
 

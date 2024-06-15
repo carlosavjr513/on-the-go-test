@@ -1,4 +1,5 @@
 "use client";
+import { HomeData } from "@/types/types";
 import { Box, Grid } from "@mui/material";
 import axios from "axios";
 import { useEffect } from "react";
@@ -9,9 +10,8 @@ import DashboardCredit from "./components/DashboardCredit/DashboardCredit";
 import MontlyResume from "./components/MontlyResume/MontlyResume";
 import MyResearchesCarousel from "./components/MyResearches/MyResearchesCarousel";
 import NotificationTabs from "./components/Notification/NotificationTabs";
+import { useNotifications } from "./context/NotificationContext";
 import { formatDate, splitRunning } from "./utils/functions";
-import Navbar from "./components/Navbar";
-import { HomeData, NotificationData } from "@/types/types";
 
 export default function Home() {
   const { register, setValue, watch } = useForm<HomeData>({
@@ -25,17 +25,8 @@ export default function Home() {
     },
   });
 
-  const {
-    register: notificationsRegister,
-    setValue: notificationsSetValue,
-    watch: notificationsWatch,
-  } = useForm<{
-    notifications: NotificationData[];
-  }>({
-    defaultValues: {
-      notifications: [],
-    },
-  });
+  const { notificationsForm } = useNotifications();
+  const notifications = notificationsForm.watch("notifications");
 
   useEffect(() => {
     const fetchHome = async () => {
@@ -65,105 +56,87 @@ export default function Home() {
     fetchHome();
   }, [setValue]);
 
-  useEffect(() => {
-    const fetchNotifications = async () => {
-      try {
-        const notificationsResponse = await axios.get("/api/notifications");
-        notificationsSetValue("notifications", notificationsResponse.data);
-      } catch (error) {
-        console.error("Error fetching notifications: ", error);
-      }
-    };
-
-    fetchNotifications();
-  }, [notificationsSetValue]);
-
   const { date, running, scripting, audience, credits, myResearches } = watch();
 
-  const notifications = notificationsWatch("notifications");
-
   return (
-    <>
-      <Navbar notifications={notifications}/>
-      <Grid container>
-        <Grid
-          item
-          xs={12}
-          md={12}
-          xl={9}
-          sx={{ display: "flex", flexDirection: "column" }}
-        >
-          <Box
-            sx={{
-              color: "#fff",
-              flex: "1 0 auto",
-            }}
-          >
-            <MontlyResume
-              date={date}
-              running={running}
-              scripting={scripting}
-              audience={audience}
-            />
-          </Box>
-
-          <Grid container>
-            <Grid item xs={12} md={9} xl={12}>
-              <Box>
-                <MyResearchesCarousel myResearches={myResearches} />
-              </Box>
-              <Box>
-                <Grid
-                  container
-                  sx={{
-                    p: 1,
-                    gap: 1,
-                    justifyContent: "center",
-                  }}
-                >
-                  <Grid item xs={12} md={6}>
-                    <DashboardCredit credits={credits} />
-                  </Grid>
-                  <Grid
-                    item
-                    xs={12}
-                    md={5}
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                      gap: 1,
-                    }}
-                  >
-                    <ContactsCard contacts={audience.contacts} />
-                    <SendedBalanceCard audience={audience} />
-                  </Grid>
-                </Grid>
-              </Box>
-            </Grid>
-
-            <Grid
-              item
-              md={3}
-              sx={{
-                display: { xs: "none", sm: "none", md: "flex", xl: "none" },
-              }}
-            >
-              <NotificationTabs notifications={notifications} />
-            </Grid>
-          </Grid>
-        </Grid>
-
-        <Grid
-          item
-          md={3}
+    <Grid container>
+      <Grid
+        item
+        xs={12}
+        md={12}
+        xl={9}
+        sx={{ display: "flex", flexDirection: "column" }}
+      >
+        <Box
           sx={{
-            display: { xs: "none", sm: "none", md: "none", xl: "flex" },
+            color: "#fff",
+            flex: "1 0 auto",
           }}
         >
-          <NotificationTabs notifications={notifications} />
+          <MontlyResume
+            date={date}
+            running={running}
+            scripting={scripting}
+            audience={audience}
+          />
+        </Box>
+
+        <Grid container>
+          <Grid item xs={12} md={9} xl={12}>
+            <Box>
+              <MyResearchesCarousel myResearches={myResearches} />
+            </Box>
+            <Box>
+              <Grid
+                container
+                sx={{
+                  p: 1,
+                  gap: 1,
+                  justifyContent: "center",
+                }}
+              >
+                <Grid item xs={12} md={6}>
+                  <DashboardCredit credits={credits} />
+                </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  md={5}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    gap: 1,
+                  }}
+                >
+                  <ContactsCard contacts={audience.contacts} />
+                  <SendedBalanceCard audience={audience} />
+                </Grid>
+              </Grid>
+            </Box>
+          </Grid>
+
+          <Grid
+            item
+            md={3}
+            sx={{
+              display: { xs: "none", sm: "none", md: "flex", xl: "none" },
+            }}
+          >
+            <NotificationTabs notifications={notifications} />
+          </Grid>
         </Grid>
       </Grid>
-    </>
+
+      <Grid
+        item
+        md={3}
+        sx={{
+          display: { xs: "none", sm: "none", md: "none", xl: "flex" },
+        }}
+      >
+        <NotificationTabs notifications={notifications} />
+      </Grid>
+    </Grid>
   );
 }

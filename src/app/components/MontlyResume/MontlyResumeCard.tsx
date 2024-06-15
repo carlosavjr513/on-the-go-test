@@ -27,6 +27,7 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
           flexDirection: "column",
           justifyContent: "flex-start",
           alignItems: "flex-start",
+          width: "100%",
         }}
       >
         <Box>
@@ -68,15 +69,6 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
                 </span>
               )}
             </Typography>
-            {dataType === "running" && (
-              <Circle
-                sx={{
-                  color: "#0AD2A5",
-                  fontSize: 8,
-                  alignSelf: "flex-start",
-                }}
-              />
-            )}
           </Box>
           <Typography
             sx={{
@@ -102,6 +94,14 @@ const MontlyResumeCard: React.FC<MontlyResumeCardProps> = ({
           )}
         </Box>
       </CardContent>
+      {dataType === "running" && (
+        <Circle
+          sx={{
+            color: "#0AD2A5",
+            fontSize: 8,
+          }}
+        />
+      )}
     </Card>
   );
 };

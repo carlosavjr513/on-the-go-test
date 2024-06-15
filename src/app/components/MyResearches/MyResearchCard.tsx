@@ -21,8 +21,8 @@ const MyResearchesCard: React.FC<MyResearchCardProps> = ({ myResearch }) => {
         border: 1,
         borderBottom: 10,
         borderRadius: 1,
+        maxWidth: 220,
         textAlign: "center",
-        p: 0,
         borderColor: "#000000",
         "&:hover": {
           "& .hovered": {
@@ -38,7 +38,12 @@ const MyResearchesCard: React.FC<MyResearchCardProps> = ({ myResearch }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <CardContent sx={{ height: "140px" }}>
+      <CardContent
+        sx={{
+          height: "140px",
+          width: "100%",
+        }}
+      >
         <Box sx={{ display: "flex", alignItems: "center", px: 1 }}>
           <Box
             sx={{
@@ -57,6 +62,7 @@ const MyResearchesCard: React.FC<MyResearchCardProps> = ({ myResearch }) => {
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
+                width: "100%",
               }}
               className="hovered"
             >
@@ -74,9 +80,7 @@ const MyResearchesCard: React.FC<MyResearchCardProps> = ({ myResearch }) => {
                   sx={{
                     color: "#0AD2A5",
                     fontSize: 8,
-                    position: "absolute",
-                    marginLeft: "165px",
-                    marginTop: "-20px",
+                    mr: 1,
                   }}
                 />
               )}

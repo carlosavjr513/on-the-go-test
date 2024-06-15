@@ -1,4 +1,6 @@
-// HOME
+import { UseFormReturn } from "react-hook-form";
+
+//#region HOME
 
 export interface HomeData {
   date: string;
@@ -64,26 +66,28 @@ export type SendedBalanceCardProps = {
   };
 };
 
-// NOTIFICATION
+//#endregion HOME
 
-export interface NotificationCardProps {
-  notification: {
-    comments: number;
-    read: boolean;
-    mensage: string;
-  };
-}
+//#region NOTIFICATION
 
 export interface NotificationData {
   comments: number;
   read: boolean;
   mensage: string;
   id: string;
-  createdAt: string;
+  createAt: string;
+}
+
+export interface NotificationCardProps {
+  notification: NotificationData;
 }
 
 export interface NotificationTabsProps {
   notifications: NotificationData[];
+}
+
+export interface NotificationsContextProps {
+  notificationsForm: UseFormReturn<NotificationTabsProps>;
 }
 
 export interface TabPanelProps {
@@ -98,3 +102,5 @@ export interface NavbarProps {
   menuItems: MenuItemType[];
   notifications: NotificationData[];
 }
+
+//#endregion NOTIFICATION
