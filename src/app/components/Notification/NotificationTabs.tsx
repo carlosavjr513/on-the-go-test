@@ -8,7 +8,7 @@ import {
   TimelineSeparator,
   timelineItemClasses,
 } from "@mui/lab";
-import { Box, Tab, Tabs, Typography } from "@mui/material";
+import { Box, Tab, Tabs, Tooltip, Typography } from "@mui/material";
 import React, { useState } from "react";
 import NotificationCard from "./NotificationCard";
 
@@ -89,7 +89,7 @@ const NotificationTabs: React.FC<NotificationTabsProps> = ({
           {notifications.length}
         </Box>
       </Box>
-      <Box sx={{ width: "100%", px: 1 }}>
+      <Box sx={{ width: "100%" }}>
         <Tabs
           value={valueTab}
           onChange={handleChange}
@@ -97,13 +97,16 @@ const NotificationTabs: React.FC<NotificationTabsProps> = ({
           sx={{
             "& .MuiTabs-indicator": {
               backgroundColor: "#FF5D55",
+              height: 4,
             },
             "& .MuiTab-root.Mui-selected": {
               color: "#FF5D55",
             },
+            px: 2,
+            boxShadow: "0px 4px 5px rgba(0, 0, 0, 0.2)",
           }}
         >
-          <Tab label="Todas" {...a11yProps(0)} />
+          <Tab label="Todas" {...a11yProps(0)} sx={{ fontWeight: 700, p: 0 }} />
         </Tabs>
         <TabPanel value={valueTab} index={0}>
           <Timeline
@@ -117,7 +120,7 @@ const NotificationTabs: React.FC<NotificationTabsProps> = ({
             {notifications.map((notification, index) => {
               const notificationDate = formatTimelineDate(
                 notification.createAt
-              );
+              ).formattedDate;
               const showDate = notificationDate !== lastDate;
               if (showDate) {
                 lastDate = notificationDate;
@@ -126,13 +129,39 @@ const NotificationTabs: React.FC<NotificationTabsProps> = ({
               return (
                 <Box key={notification.id}>
                   {showDate && (
-                    <TimelineItem sx={{ ml: -2, mb: -5, mt: 1 }}>
+                    <TimelineItem sx={{ mb: -5, mt: 1 }}>
                       <TimelineSeparator>
-                        <Typography
-                          sx={{ fontWeight: 400, textAlign: "center" }}
+                        <Tooltip
+                          title={
+                            formatTimelineDate(notification.createAt)
+                              .toolTipDate
+                          }
+                          placement="right"
+                          arrow
+                          sx={{
+                            "& .MuiTooltip-tooltip": {
+                              backgroundColor: "#000",
+                              color: "#fff",
+                            },
+                            "& .MuiTooltip-arrow": {
+                              color: "#000",
+                            },
+                          }}
                         >
-                          {formatTimelineDate(notification.createAt)}
-                        </Typography>
+                          <Typography
+                            sx={{
+                              fontWeight: 400,
+                              textAlign: "start",
+                              width: "150px",
+                              ml: -2,
+                            }}
+                          >
+                            {
+                              formatTimelineDate(notification.createAt)
+                                .formattedDate
+                            }
+                          </Typography>
+                        </Tooltip>
                       </TimelineSeparator>
                     </TimelineItem>
                   )}

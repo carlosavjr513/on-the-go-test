@@ -55,15 +55,15 @@ const NotificationCard: React.FC<NotificationCardProps> = ({
             </Typography>
           </Box>
           <Box sx={{ position: "relative" }}>
-            <Circle
+            {!notification.read && <Circle
               sx={{
-                color: notification.read ? "#0AD2A5" : "#FF5D55",
+                color: "#FF5D55",
                 fontSize: 8,
                 position: "absolute",
                 bottom: 4,
                 right: 0,
               }}
-            />
+            />}
           </Box>
         </Box>
         <Box

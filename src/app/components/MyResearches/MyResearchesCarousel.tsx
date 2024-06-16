@@ -1,7 +1,7 @@
 import { MyResearchesCarouselProps } from "@/types/types";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import { Box, Button, Grid, MobileStepper, useMediaQuery } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AllResearchesCard from "./AllResearchesCard";
 import MyResearchCard from "./MyResearchCard";
 
@@ -10,6 +10,7 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
 }) => {
   const steps = [...myResearches, "All Researches"];
   const [activeStep, setActiveStep] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const isBetween596And1092 = useMediaQuery(
     "(min-width: 596px) and (max-width: 1092px)"
@@ -23,6 +24,19 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
   let visibleCards = isAbove1380 ? 4 : isBetween1092And1380 ? 3 : isBetween596And1092 ? 2 : 1;
   const maxSteps = Math.ceil(steps.length / visibleCards);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+      setActiveStep(0);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -30,6 +44,10 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
+
+  const isBackButtonDisabled = activeStep === 0;
+  const isNextButtonDisabled = activeStep >= maxSteps - 1;
+  const areBothButtonsDisabled = isBackButtonDisabled && isNextButtonDisabled;
 
   return (
     <Box
@@ -61,6 +79,7 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
             "&:hover": {
               backgroundColor: activeStep === 0 ? "#0000" : "#000",
             },
+            visibility: areBothButtonsDisabled ? "hidden" : "visible",
           }}
         >
           <KeyboardArrowLeft sx={{ fontSize: "50px" }} />
@@ -95,6 +114,7 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
             "&:hover": {
               backgroundColor: activeStep >= maxSteps - 1 ? "#0000" : "#000",
             },
+            visibility: areBothButtonsDisabled ? "hidden" : "visible",
           }}
         >
           <KeyboardArrowRight sx={{ fontSize: "50px" }} />
@@ -108,6 +128,7 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
         activeStep={activeStep}
         sx={{
           backgroundColor: "transparent",
+          visibility: areBothButtonsDisabled ? "hidden" : "visible",
         }}
         nextButton={<Box />}
         backButton={<Box />}
