@@ -80,7 +80,8 @@ const MyResearchesCard: React.FC<MyResearchCardProps> = ({ myResearch }) => {
                   sx={{
                     color: "#0AD2A5",
                     fontSize: 8,
-                    mr: 1,
+                    ml: 14,
+                    mt: -2,
                   }}
                 />
               )}
