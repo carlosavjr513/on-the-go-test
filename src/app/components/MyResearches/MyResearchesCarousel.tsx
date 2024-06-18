@@ -10,7 +10,9 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
 }) => {
   const steps = [...myResearches, "All Researches"];
   const [activeStep, setActiveStep] = useState(0);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
 
   const isBetween596And1092 = useMediaQuery(
     "(min-width: 596px) and (max-width: 1092px)"
