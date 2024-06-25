@@ -90,9 +90,8 @@ export default function Home() {
               <Grid
                 container
                 sx={{
-                  p: 1,
                   gap: 1,
-                  justifyContent: "center",
+                  justifyContent: "space-evenly",
                 }}
               >
                 <Grid item xs={12} md={6}>

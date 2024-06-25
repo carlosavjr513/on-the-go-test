@@ -1,3 +1,4 @@
+import { NavbarProps, NotificationData } from "@/types/types";
 import ClearIcon from "@mui/icons-material/Clear";
 import MenuIcon from "@mui/icons-material/Menu";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -19,15 +20,11 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import NotificationTabs from "./Notification/NotificationTabs";
-import { NavbarProps, NotificationData } from "@/types/types";
-
-
 
 const DesktopNavbar: React.FC<Omit<NavbarProps, "notifications">> = ({
   menuItems,
 }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [isNotificationTabsOpen, setIsNotificationTabsOpen] = useState(false);
 
   const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget as HTMLElement);
@@ -79,7 +76,7 @@ const DesktopNavbar: React.FC<Omit<NavbarProps, "notifications">> = ({
               border: "1px solid #242528",
               borderRadius: "4px",
               p: "4px 8px",
-              gap: "10px",
+              gap: 1.25,
             }}
           >
             <Box

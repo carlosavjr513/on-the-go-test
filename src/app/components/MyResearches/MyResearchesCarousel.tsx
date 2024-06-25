@@ -66,7 +66,7 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          py: 2,
+          pt: 2,
         }}
       >
         <Button
@@ -87,7 +87,7 @@ const MyResearchesCarousel: React.FC<MyResearchesCarouselProps> = ({
           <KeyboardArrowLeft sx={{ fontSize: "50px" }} />
         </Button>
 
-        <Grid container spacing={2} justifyContent="center">
+        <Grid container spacing={1} justifyContent="center">
           {steps
             .slice(
               activeStep * visibleCards,
