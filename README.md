@@ -16,6 +16,8 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+You can also just access this link [https://on-the-go-test.vercel.app/](https://on-the-go-test.vercel.app/)
+
 ## Test
 
 This is a technical challenge I did for a senior frontend developer position at [On The Go](https://www.onthego.com.br). 
